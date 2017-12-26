@@ -7,4 +7,6 @@ package br.uefs.ecomp.RoadTrips.model;
  */
 public class Usuario {
     private TipoUsuario tipoUsuario;
+    private String login;
+    private String senha;
 }

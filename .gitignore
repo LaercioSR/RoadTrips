@@ -1,0 +1,14 @@
+# Arquivos de classe compilada
+*.class
+
+# Arquivos log
+*.log
+
+# Arquivos de pacotes
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+/build/
