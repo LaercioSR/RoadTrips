@@ -2,7 +2,6 @@ package br.uefs.ecomp.RoadTrips.util;
 
 import br.uefs.ecomp.RoadTrips.exceptions.DadoDuplicadoException;
 import br.uefs.ecomp.RoadTrips.exceptions.DadoNaoEncontradoException;
-import java.util.Iterator;
 
 public class HashMap implements IHashMap {
     private final double LOAD_FACTOR = 0.5;
@@ -11,11 +10,6 @@ public class HashMap implements IHashMap {
     private Entry[] entries;
     private int tamanhoArray;
     private int size = 0;
-
-    @Override
-    public Iterator iterator() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
     private class Entry{
         private Object key;
