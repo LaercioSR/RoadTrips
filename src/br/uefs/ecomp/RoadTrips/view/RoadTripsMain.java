@@ -1,64 +1,69 @@
 package br.uefs.ecomp.RoadTrips.view;
 
+import br.uefs.ecomp.RoadTrips.controller.FXMLTelaCadastroUsuarioController;
+import br.uefs.ecomp.RoadTrips.controller.FXMLTelaInicialController;
 import br.uefs.ecomp.RoadTrips.controller.FXMLTelaLoginController;
+import br.uefs.ecomp.RoadTrips.controller.RoadTripsController;
 import java.io.IOException;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class RoadTripsMain extends Application {
     
+    static private Stage stage;
+    private RoadTripsController controller;
+     
+    
     @Override
-    public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLTelaInicial.fxml"));
+    public void start(Stage primaryStage) throws IOException {
+        stage = primaryStage;
         
-        Scene scene = new Scene(root);
-        
-        stage.setScene(scene);
-        stage.setTitle("Road Trips");
+        mostrarTelaLogin();
         stage.setResizable(false);
-        if(showFXMLTelaLogin())
-            stage.show();
+        stage.show();
+    }
+
+    public void mostrarTelaLogin() throws IOException {
+        FXMLTelaLoginController controllerLogin = (FXMLTelaLoginController) trocarScene("FXMLTelaLogin.fxml");
+        controllerLogin.setApplication(this);
+        controllerLogin.setController(controller);
+        
+        stage.setTitle("Login - Road Trips");
     }
     
-    public boolean showFXMLTelaLogin() throws IOException{
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("FXMLTelaLogin.fxml"));
-        AnchorPane page = (AnchorPane) loader.load();
-
-            // Criando um Estágio de Diálogo (Stage Dialog)
-        Stage loginStage = new Stage();
-        loginStage.setTitle("Login");
-        loginStage.setResizable(false);
-            //Especifica a modalidade para esta fase . Isso deve ser feito antes de fazer o estágio visível. A modalidade pode ser: Modality.NONE , Modality.WINDOW_MODAL , ou Modality.APPLICATION_MODAL 
-            //dialogStage.initModality(Modality.WINDOW_MODAL);//WINDOW_MODAL (possibilita minimizar)
-
-            //Especifica a janela do proprietário para esta página, ou null para um nível superior.
-            //dialogStage.initOwner(null); //null deixa a Tela Principal livre para ser movida
-            //dialogStage.initOwner(this.tableViewClientes.getScene().getWindow()); //deixa a tela de Preenchimento dos dados como prioritária
-
-        Scene scene = new Scene(page);
-        loginStage.setScene(scene);
-
-            // Setando o cliente no Controller.
-        FXMLTelaLoginController controller = loader.getController();
-        controller.setLoginStage(loginStage);
+    public void mostrarTelaCadastro() throws IOException {
+        FXMLTelaCadastroUsuarioController controllerCadastro = (FXMLTelaCadastroUsuarioController) trocarScene("FXMLTelaCadastroUsuario.fxml");
+        controllerCadastro.setApplication(this);
+        controllerCadastro.setController(controller);
         
-            // Mostra o Dialog e espera até que o usuário o feche
-        loginStage.showAndWait();
-        
-        return controller.isButtonClicked();
+        stage.setTitle("Login - Road Trips");
     }
-
+    
+    public void mostrarTelaInicial() throws IOException {
+        FXMLTelaInicialController controllerTelaInicial = (FXMLTelaInicialController) trocarScene("FXMLTelaInicial.fxml");
+        controllerTelaInicial.setApplication(this);
+        controllerTelaInicial.setController(controller);
+        
+        stage.setTitle("Road Trips");
+    }
+    
+    private Initializable trocarScene(String fxml) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(RoadTripsMain.class.getResource(fxml));
+        
+        Parent page = loader.load();
+        Scene scene = new Scene(page);
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        
+        return (Initializable) loader.getController();
+    }
+    
     public static void main(String[] args) {
         launch(args);
     }
-    
 }

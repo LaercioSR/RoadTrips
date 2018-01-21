@@ -9,8 +9,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.uefs.ecomp.RoadTrips.controller.FXMLTelaLoginController">
    <children>
-      <AnchorPane prefHeight="500.0" prefWidth="350.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <AnchorPane prefHeight="500.0" prefWidth="350.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="350.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Group layoutY="44.0">
                <children>
@@ -19,8 +18,8 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="14.0" layoutY="137.0" prefHeight="40.0" prefWidth="215.0" />
-                  <PasswordField layoutX="14.0" layoutY="206.0" prefHeight="40.0" prefWidth="215.0" />
+                  <TextField fx:id="textFieldUsuario" layoutX="14.0" layoutY="137.0" prefHeight="40.0" prefWidth="240.0" />
+                  <PasswordField fx:id="passwordFieldSenha" layoutX="14.0" layoutY="206.0" prefHeight="40.0" prefWidth="240.0" />
                   <Label layoutX="15.0" layoutY="181.0" prefHeight="25.0" prefWidth="60.0" text="Senha">
                      <font>
                         <Font size="16.0" />
@@ -30,9 +29,9 @@
             </Group>
             <Group AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0">
                <children>
-                  <Button fx:id="buttonEntrar" layoutX="183.0" layoutY="348.0" mnemonicParsing="false" onAction="#ProcessarLogin" text="Entrar">
+                  <Button fx:id="buttonEntrar" layoutX="183.0" layoutY="348.0" mnemonicParsing="false" onAction="#processarLogin" text="Entrar">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                   </Button>
                   <Button fx:id="buttonCadastrar" layoutX="43.0" layoutY="348.0" mnemonicParsing="false" onAction="#cadastrarUsuario" text="Cadastrar-se">
@@ -42,7 +41,7 @@
                   </Button>
                </children>
             </Group>
-            <Label fx:id="labelMensagemErro" layoutX="164.0" layoutY="393.0" text="     ">
+            <Label fx:id="labelMensagemErro" layoutX="74.0" layoutY="301.0" text="    ">
                <font>
                   <Font size="16.0" />
                </font>
