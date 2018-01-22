@@ -116,7 +116,7 @@ public class HashMap implements IHashMap {
     }
     
     private int encontrarPosicao(Entry e){
-        int pos = e.getKey().hashCode() % tamanhoArray;
+        int pos = Math.abs(e.getKey().hashCode()) % tamanhoArray;
         int primeiroVazio = -1;
         
         while(entries[pos] != null && !entries[pos].equals(e)){

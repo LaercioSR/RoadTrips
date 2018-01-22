@@ -1,0 +1,24 @@
+.mainFxmlClass {
+
+}
+
+.buttons {
+    -fx-background-color: whitesmoke;
+    -fx-border-color: lightgrey;
+}
+
+.buttons:hover {
+    -fx-background-color: #dadada;
+}
+
+.buttons:focused {
+    -fx-background-color: #e4e4e4;
+}
+
+.titledPane {
+    -fx-background-color: lightgrey;
+}
+
+.anchorPane {
+    -fx-background-color: white;
+}

@@ -28,7 +28,7 @@
                </font>
             </Label>
             <TextField fx:id="textFieldUsuario" layoutX="86.0" layoutY="162.0" prefHeight="40.0" prefWidth="250.0" />
-            <PasswordField fx:id="passwordSenha" layoutX="87.0" layoutY="216.0" prefHeight="40.0" prefWidth="249.0" />
+            <PasswordField fx:id="passwordFieldSenha" layoutX="87.0" layoutY="216.0" prefHeight="40.0" prefWidth="249.0" />
          </children>
       </Group>
       <Group layoutX="-2.0" layoutY="-1.0">
@@ -45,6 +45,6 @@
             </Button>
          </children>
       </Group>
-      <Label fx:id="labelMensagemErro" layoutX="73.0" layoutY="312.0" text="     " />
+      <Label fx:id="labelMensagemErro" layoutX="43.0" layoutY="312.0" text="       " textFill="#eb0e0e" />
    </children>
 </AnchorPane>

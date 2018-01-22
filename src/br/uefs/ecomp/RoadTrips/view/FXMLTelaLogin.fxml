@@ -41,7 +41,7 @@
                   </Button>
                </children>
             </Group>
-            <Label fx:id="labelMensagemErro" layoutX="74.0" layoutY="301.0" text="    ">
+            <Label fx:id="labelMensagemErro" layoutX="56.0" layoutY="299.0" textFill="#eb0e0e">
                <font>
                   <Font size="16.0" />
                </font>

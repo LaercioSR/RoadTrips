@@ -1,18 +1,25 @@
 package br.uefs.ecomp.RoadTrips.controller;
 
+import br.uefs.ecomp.RoadTrips.exceptions.DadoDuplicadoException;
+import br.uefs.ecomp.RoadTrips.exceptions.DadoNaoEncontradoException;
+import br.uefs.ecomp.RoadTrips.model.Usuario;
 import br.uefs.ecomp.RoadTrips.view.RoadTripsMain;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 public class FXMLTelaLoginController implements Initializable {
     
@@ -22,15 +29,23 @@ public class FXMLTelaLoginController implements Initializable {
     @FXML private Button buttonCadastrar;
     @FXML private Button buttonEntrar;
     @FXML private TextField textFieldUsuario;
-        
-    private Stage loginStage;
+    
     private RoadTripsMain application;
     private RoadTripsController controller;
 
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        textFieldUsuario.setOnKeyPressed((KeyEvent e) -> {
+            if (e.getCode() == KeyCode.ENTER) {
+                try {
+                    processarLogin(null);
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMLTelaCadastroUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        passwordFieldSenha.setOnKeyPressed(textFieldUsuario.getOnKeyPressed());
     }
 
     public void setApplication(RoadTripsMain application) {
@@ -41,19 +56,19 @@ public class FXMLTelaLoginController implements Initializable {
         this.controller = controller;
     }
 
-    public void setLoginStage(Stage loginStage) {
-        this.loginStage = loginStage;
-    }
-
     @FXML
     void processarLogin(ActionEvent event) throws IOException {
-        application.mostrarTelaInicial();
-        //RoadTripsMain.mostrarTelaInicial();
+        try {
+            Usuario usuario = controller.autenticarLogin(textFieldUsuario.getText(), passwordFieldSenha.getText());
+            application.mostrarTelaInicial(usuario);
+            
+        } catch (DadoNaoEncontradoException ex) {
+            labelMensagemErro.setText("Usuário/Senha está(ão) incorretos");
+        }
     }
 
     @FXML
-    void cadastrarUsuario(ActionEvent event) throws IOException {
+    void cadastrarUsuario(ActionEvent event) throws IOException, DadoDuplicadoException {
         application.mostrarTelaCadastro();
-        //RoadTripsMain.mostrarTelaCadastro();
     }
 }

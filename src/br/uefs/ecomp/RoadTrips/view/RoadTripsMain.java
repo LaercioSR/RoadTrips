@@ -4,12 +4,15 @@ import br.uefs.ecomp.RoadTrips.controller.FXMLTelaCadastroUsuarioController;
 import br.uefs.ecomp.RoadTrips.controller.FXMLTelaInicialController;
 import br.uefs.ecomp.RoadTrips.controller.FXMLTelaLoginController;
 import br.uefs.ecomp.RoadTrips.controller.RoadTripsController;
+import br.uefs.ecomp.RoadTrips.exceptions.DadoDuplicadoException;
+import br.uefs.ecomp.RoadTrips.model.Usuario;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class RoadTripsMain extends Application {
@@ -20,9 +23,11 @@ public class RoadTripsMain extends Application {
     
     @Override
     public void start(Stage primaryStage) throws IOException {
+        controller = new RoadTripsController();
         stage = primaryStage;
         
         mostrarTelaLogin();
+        stage.getIcons().add(new Image("/br/uefs/ecomp/RoadTrips/icon/iconRoadTrips2.png"));
         stage.setResizable(false);
         stage.show();
     }
@@ -43,10 +48,13 @@ public class RoadTripsMain extends Application {
         stage.setTitle("Login - Road Trips");
     }
     
-    public void mostrarTelaInicial() throws IOException {
+    public void mostrarTelaInicial(Usuario usuario) throws IOException {
         FXMLTelaInicialController controllerTelaInicial = (FXMLTelaInicialController) trocarScene("FXMLTelaInicial.fxml");
         controllerTelaInicial.setApplication(this);
         controllerTelaInicial.setController(controller);
+        controllerTelaInicial.setUsuario(usuario);
+        controllerTelaInicial.carregarAnchorPaneMenu();
+        controllerTelaInicial.carregarMenuButtonUsuario();
         
         stage.setTitle("Road Trips");
     }
@@ -63,7 +71,7 @@ public class RoadTripsMain extends Application {
         return (Initializable) loader.getController();
     }
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DadoDuplicadoException {
         launch(args);
     }
 }
