@@ -1,0 +1,13 @@
+.mainFxmlClass {
+
+}
+
+.areaImagens {
+    -fx-background-color: white;
+    -fx-border-color: lightgrey;
+}
+
+.areaImagensBarra {
+    -fx-background-color: whitesmoke;
+    -fx-border-color: lightgrey;
+}

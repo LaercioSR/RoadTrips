@@ -2,6 +2,7 @@ package br.uefs.ecomp.RoadTrips.controller;
 
 import br.uefs.ecomp.RoadTrips.exceptions.DadoDuplicadoException;
 import br.uefs.ecomp.RoadTrips.exceptions.DadoNaoEncontradoException;
+import br.uefs.ecomp.RoadTrips.model.Cidade;
 import br.uefs.ecomp.RoadTrips.model.TipoUsuario;
 import br.uefs.ecomp.RoadTrips.model.Usuario;
 import br.uefs.ecomp.RoadTrips.util.Grafo;
@@ -45,5 +46,11 @@ public class RoadTripsController {
             return usuario;
         
         throw new DadoNaoEncontradoException();
+    }
+    
+    public void adicionarCidade(String nome, double area, int populacao, String descricao, double latitude, double longitude) throws DadoDuplicadoException {
+        Cidade cidade = new Cidade(nome, area, populacao, descricao, latitude, longitude);
+        
+        pontos.addVertex(cidade);
     }
 }

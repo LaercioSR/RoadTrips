@@ -7,19 +7,25 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.uefs.ecomp.RoadTrips.controller.FXMLTelaInicialController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.uefs.ecomp.RoadTrips.controller.FXMLTelaInicialController">
    <children>
-      <SplitPane dividerPositions="0.29797979797979796" prefHeight="600.0" prefWidth="900.0">
+      <SplitPane dividerPositions="0.20970266040688576" minHeight="0.0" minWidth="0.0" prefHeight="720.0" prefWidth="1280.0">
         <items>
-          <AnchorPane fx:id="anchorPaneMenu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="264.0" />
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <AnchorPane fx:id="anchorPaneMenu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="296.0" SplitPane.resizableWithParent="false" />
+            <VBox prefHeight="718.0" prefWidth="984.0" SplitPane.resizableWithParent="false">
                <children>
-                  <MenuButton fx:id="menuButtonUsuario" layoutX="487.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="145.0">
-                    <items>
-                      <MenuItem mnemonicParsing="false" onAction="#deslogarUsuario" text="Sair" />
-                    </items>
-                  </MenuButton>
-               </children></AnchorPane>
+                  <AnchorPane prefHeight="60.0" prefWidth="974.0">
+                     <children>
+                        <MenuButton fx:id="menuButtonUsuario" layoutX="830.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="144.0">
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#deslogarUsuario" text="Sair" />
+                          </items>
+                        </MenuButton>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="anchorPaneView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="974.0" />
+               </children>
+            </VBox>
         </items>
       </SplitPane>
    </children>

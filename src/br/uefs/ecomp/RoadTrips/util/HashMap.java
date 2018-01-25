@@ -66,7 +66,7 @@ public class HashMap implements IHashMap {
     
     @Override
     public Object get(Object key) throws DadoNaoEncontradoException {
-        int pos = key.hashCode() % tamanhoArray;
+        int pos = Math.abs(key.hashCode()) % tamanhoArray;
         
         while(entries[pos] != null){
             if(entries[pos] != EMPTY && entries[pos].getKey().equals(key)){
@@ -80,7 +80,7 @@ public class HashMap implements IHashMap {
     
     @Override
     public void removeKey(Object key) throws DadoNaoEncontradoException {
-        int pos = key.hashCode() % tamanhoArray;
+        int pos = Math.abs(key.hashCode()) % tamanhoArray;
         
         while(entries[pos] != null){
             if(entries[pos] != EMPTY && entries[pos].getKey().equals(key)){

@@ -46,6 +46,9 @@ public class FXMLTelaLoginController implements Initializable {
             }
         });
         passwordFieldSenha.setOnKeyPressed(textFieldUsuario.getOnKeyPressed());
+        
+        
+        textFieldUsuario.setText("Laercio");
     }
 
     public void setApplication(RoadTripsMain application) {

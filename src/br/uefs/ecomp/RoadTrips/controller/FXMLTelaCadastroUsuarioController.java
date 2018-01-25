@@ -1,6 +1,7 @@
 package br.uefs.ecomp.RoadTrips.controller;
 
 import br.uefs.ecomp.RoadTrips.exceptions.DadoDuplicadoException;
+import br.uefs.ecomp.RoadTrips.util.MaskTextField;
 import br.uefs.ecomp.RoadTrips.view.RoadTripsMain;
 import java.io.IOException;
 import java.net.URL;
@@ -8,7 +9,6 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -44,6 +44,8 @@ public class FXMLTelaCadastroUsuarioController implements Initializable {
         });
         passwordFieldSenha.setOnKeyPressed(textFieldUsuario.getOnKeyPressed());
         textFieldEmail.setOnKeyPressed(textFieldUsuario.getOnKeyPressed());
+        
+        MaskTextField.maskEmail(textFieldEmail);
     }    
     public void setApplication(RoadTripsMain application) {
         textFieldUsuario.requestFocus();
