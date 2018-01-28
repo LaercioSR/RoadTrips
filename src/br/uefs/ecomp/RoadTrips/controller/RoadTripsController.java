@@ -8,14 +8,23 @@ import br.uefs.ecomp.RoadTrips.model.Usuario;
 import br.uefs.ecomp.RoadTrips.util.Grafo;
 import br.uefs.ecomp.RoadTrips.util.HashMap;
 import br.uefs.ecomp.RoadTrips.util.HashingSenha;
+import java.util.Iterator;
+import java.util.LinkedList;
+import javafx.scene.image.Image;
 
 public class RoadTripsController {
     Grafo pontos;
     HashMap usuarios;
+    int numPontos;
 
     public RoadTripsController() {
         this.pontos = new Grafo();
         this.usuarios = new HashMap();
+        numPontos = 0;
+    }
+    
+    public Iterator iteratorPontos() {
+        return pontos.iterator();
     }
     
     public boolean usuarioCadastrado(Usuario usuario) {
@@ -48,8 +57,9 @@ public class RoadTripsController {
         throw new DadoNaoEncontradoException();
     }
     
-    public void adicionarCidade(String nome, double area, int populacao, String descricao, double latitude, double longitude) throws DadoDuplicadoException {
-        Cidade cidade = new Cidade(nome, area, populacao, descricao, latitude, longitude);
+    public void adicionarCidade(String nome, double area, int populacao, String descricao, double latitude, 
+                                double longitude, LinkedList<Image> imagens) throws DadoDuplicadoException {
+        Cidade cidade = new Cidade(nome, ++numPontos, area, populacao, descricao, latitude, longitude, imagens);
         
         pontos.addVertex(cidade);
     }

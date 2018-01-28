@@ -1,5 +1,8 @@
 package br.uefs.ecomp.RoadTrips.controller;
 
+import br.uefs.ecomp.RoadTrips.model.Cidade;
+import br.uefs.ecomp.RoadTrips.model.Estabelecimento;
+import br.uefs.ecomp.RoadTrips.model.Intersecao;
 import br.uefs.ecomp.RoadTrips.model.Usuario;
 import br.uefs.ecomp.RoadTrips.view.RoadTripsMain;
 import java.io.IOException;
@@ -21,6 +24,8 @@ public class FXMLTelaInicialController implements Initializable {
     private AnchorPane anchorPaneView;
     @FXML
     private MenuButton menuButtonUsuario;
+    @FXML
+    private ImageView imageViewLogo;
     
     private RoadTripsMain application;
     private RoadTripsController controller;
@@ -30,6 +35,7 @@ public class FXMLTelaInicialController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        imageViewLogo.setImage(new Image("/br/uefs/ecomp/RoadTrips/icon/logoRoadTrips.png"));
         iconMenuButtonUsuario = new Image("/br/uefs/ecomp/RoadTrips/icon/iconUsuario.png");
     }
 
@@ -92,7 +98,7 @@ public class FXMLTelaInicialController implements Initializable {
         anchorPaneView.getChildren().setAll(a);
     }
     
-    public void carregarAnchorPaneAdicionarCidade() throws IOException {
+    public void carregarAnchorPaneAdicionarCidade(Cidade cidade) throws IOException {
         AnchorPane a;
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/br/uefs/ecomp/RoadTrips/view/FXMLAnchorPaneAdicionarCidade.fxml"));
@@ -100,6 +106,9 @@ public class FXMLTelaInicialController implements Initializable {
         FXMLAnchorPaneAdicionarCidadeController controllerAdicionarCidade = loader.getController();
         controllerAdicionarCidade.setController(controller);
         controllerAdicionarCidade.setControllerTela(this);
+        if(cidade != null){
+            controllerAdicionarCidade.carregarEdicao(cidade);
+        }
         anchorPaneView.getChildren().setAll(a);
     }
     
@@ -109,11 +118,13 @@ public class FXMLTelaInicialController implements Initializable {
         loader.setLocation(getClass().getResource("/br/uefs/ecomp/RoadTrips/view/FXMLAnchorPaneSelecionarCidade.fxml"));
         a = loader.load();
         FXMLAnchorPaneSelecionarCidadeController controllerSelecionarCidade = loader.getController();
+        controllerSelecionarCidade.setController(controller);
         controllerSelecionarCidade.setControllerTela(this);
+        controllerSelecionarCidade.carregarTableViewCidades();
         anchorPaneView.getChildren().setAll(a);
     }
     
-    public void carregarAnchorPaneAdicionarIntersecao() throws IOException {
+    public void carregarAnchorPaneAdicionarIntersecao(Intersecao intersecao) throws IOException {
         AnchorPane a;
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/br/uefs/ecomp/RoadTrips/view/FXMLAnchorPaneAdicionarIntersecao.fxml"));
@@ -121,6 +132,9 @@ public class FXMLTelaInicialController implements Initializable {
         FXMLAnchorPaneAdicionarIntersecaoController controllerAdicionarIntersecao = loader.getController();
         controllerAdicionarIntersecao.setController(controller);
         controllerAdicionarIntersecao.setControllerTela(this);
+        if(intersecao != null){
+            
+        }
         anchorPaneView.getChildren().setAll(a);
     }
     
@@ -134,7 +148,7 @@ public class FXMLTelaInicialController implements Initializable {
         anchorPaneView.getChildren().setAll(a);
     }
     
-    public void carregarAnchorPaneCadastrarEstabelecimento() throws IOException {
+    public void carregarAnchorPaneCadastrarEstabelecimento(Estabelecimento estabelecimento) throws IOException {
         AnchorPane a;
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/br/uefs/ecomp/RoadTrips/view/FXMLAnchorPaneCadastrarEstabelecimento.fxml"));
@@ -142,6 +156,9 @@ public class FXMLTelaInicialController implements Initializable {
         FXMLAnchorPaneCadastrarEstabelecimentoController controllerCadastrarEstabelecimento = loader.getController();
         controllerCadastrarEstabelecimento.setController(controller);
         controllerCadastrarEstabelecimento.setControllerTela(this);
+        if(estabelecimento != null){
+            
+        }
         anchorPaneView.getChildren().setAll(a);
     }
     

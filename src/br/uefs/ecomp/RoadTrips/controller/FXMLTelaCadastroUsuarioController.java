@@ -15,6 +15,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
@@ -26,6 +28,8 @@ public class FXMLTelaCadastroUsuarioController implements Initializable {
     @FXML private PasswordField passwordFieldSenha;
     @FXML private TextField textFieldEmail;
     @FXML private TextField textFieldUsuario;
+    @FXML
+    private ImageView imageViewLogo;
 
     private RoadTripsMain application;
     private RoadTripsController controller;
@@ -33,6 +37,8 @@ public class FXMLTelaCadastroUsuarioController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        imageViewLogo.setImage(new Image("/br/uefs/ecomp/RoadTrips/icon/logoRoadTrips.png"));
+        
         textFieldUsuario.setOnKeyPressed((KeyEvent e) -> {
             if (e.getCode() == KeyCode.ENTER) {
                 try {

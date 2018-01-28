@@ -1,0 +1,37 @@
+.mainFxmlClass {
+
+}
+
+.areaVisualizacao {
+    -fx-background-color: white;
+    -fx-border-color: lightgrey;
+}
+
+.areaVisualizacaoBarra {
+    -fx-background-color: whitesmoke;
+    -fx-border-color: lightgrey;
+}
+
+.buttonsMenu {
+    -fx-background-color: whitesmoke;
+    -fx-border-color: lightgrey;
+}
+.buttonsMenu:hover {
+    -fx-background-color: #dadada;
+}
+.buttonsMenu:focused {
+    -fx-background-color: #e4e4e4;
+}
+
+.menuButtonUsuario {
+    -fx-background-color: #e4e4e4;
+    -fx-border-color: lightgrey;
+}
+
+.titledPaneMenu {
+    -fx-background-color: lightgrey;
+}
+
+.anchorPaneMenu {
+    -fx-background-color: white;
+}

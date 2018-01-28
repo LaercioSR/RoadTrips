@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -46,5 +47,6 @@
          </children>
       </Group>
       <Label fx:id="labelMensagemErro" layoutX="43.0" layoutY="312.0" text="       " textFill="#eb0e0e" />
+      <ImageView fx:id="imageViewLogo" fitHeight="125.0" fitWidth="321.0" layoutX="15.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="20.0" />
    </children>
 </AnchorPane>

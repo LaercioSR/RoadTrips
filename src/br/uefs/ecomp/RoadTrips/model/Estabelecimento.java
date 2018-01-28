@@ -7,5 +7,7 @@ package br.uefs.ecomp.RoadTrips.model;
  * @see TipoEstabelecimento
  */
 public class Estabelecimento {
+    private String nome;
+    private Cidade cidade;
     private TipoEstabelecimento tipoEstabelecimento;
 }

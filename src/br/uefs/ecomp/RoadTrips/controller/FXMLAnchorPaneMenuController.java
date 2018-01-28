@@ -33,7 +33,7 @@ public class FXMLAnchorPaneMenuController implements Initializable {
     
     @FXML
     void mostrarTelaAdicicaoCidade(ActionEvent event) throws IOException {
-        controller.carregarAnchorPaneAdicionarCidade();
+        controller.carregarAnchorPaneAdicionarCidade(null);
     }
     
     @FXML
@@ -43,7 +43,7 @@ public class FXMLAnchorPaneMenuController implements Initializable {
 
     @FXML
     void mostrarTelaAdicionarIntersecao(ActionEvent event) throws IOException {
-        controller.carregarAnchorPaneAdicionarIntersecao();
+        controller.carregarAnchorPaneAdicionarIntersecao(null);
     }
 
     @FXML
@@ -53,7 +53,7 @@ public class FXMLAnchorPaneMenuController implements Initializable {
 
     @FXML
     void mostrarTelaCadastrarEstabelecimento(ActionEvent event) throws IOException {
-        controller.carregarAnchorPaneCadastrarEstabelecimento();
+        controller.carregarAnchorPaneCadastrarEstabelecimento(null);
     }
 
     @FXML

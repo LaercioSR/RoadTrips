@@ -8,40 +8,40 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="296.0" styleClass="anchorPane" stylesheets="@css/fxmlAnchorPaneMenu.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.uefs.ecomp.RoadTrips.controller.FXMLAnchorPaneMenuController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="296.0" styleClass="anchorPaneMenu" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.uefs.ecomp.RoadTrips.controller.FXMLAnchorPaneMenuController">
    <children>
       <Accordion layoutX="48.0" layoutY="32.0" prefHeight="598.0" prefWidth="264.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <panes>
-          <TitledPane animated="false" styleClass="titledPane" stylesheets="@css/fxmlAnchorPaneMenu.css" text="Viagens">
+          <TitledPane animated="false" styleClass="titledPaneMenu" stylesheets="@css/styles.css" text="Viagens">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="anchorPane" stylesheets="@css/fxmlAnchorPaneMenu.css">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="anchorPaneMenu" stylesheets="@css/styles.css">
                      <children>
-                        <Button layoutX="-1.0" mnemonicParsing="false" onAction="#mostrarTelaMinhasViagens" prefHeight="0.0" prefWidth="296.0" styleClass="buttons" stylesheets="@css/fxmlAnchorPaneMenu.css" text="Minhas Viagens" />
-                        <Button layoutX="-1.0" layoutY="32.0" mnemonicParsing="false" onAction="#mostrarTelaNovaViagem" prefHeight="0.0" prefWidth="296.0" styleClass="buttons" stylesheets="@css/fxmlAnchorPaneMenu.css" text="Nova Viagem" textAlignment="JUSTIFY" />
+                        <Button layoutX="-1.0" mnemonicParsing="false" onAction="#mostrarTelaMinhasViagens" prefHeight="0.0" prefWidth="296.0" styleClass="buttonsMenu" stylesheets="@css/styles.css" text="Minhas Viagens" />
+                        <Button layoutX="-1.0" layoutY="32.0" mnemonicParsing="false" onAction="#mostrarTelaNovaViagem" prefHeight="0.0" prefWidth="296.0" styleClass="buttonsMenu" stylesheets="@css/styles.css" text="Nova Viagem" textAlignment="JUSTIFY" />
                      </children>
                   </AnchorPane>
             </content>
           </TitledPane>
           <TitledPane animated="false" text="Cidades">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="anchorPane" stylesheets="@css/fxmlAnchorPaneMenu.css">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="anchorPaneMenu" stylesheets="@css/styles.css">
                      <children>
-                        <Button layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" onAction="#mostrarTelaAdicicaoCidade" prefHeight="25.0" prefWidth="296.0" styleClass="buttons" stylesheets="@css/fxmlAnchorPaneMenu.css" text="Adicionar Cidade" />
-                        <Button layoutX="-1.0" layoutY="30.0" mnemonicParsing="false" onAction="#mostrarTelaSelecaoCidade" prefHeight="25.0" prefWidth="296.0" styleClass="buttons" stylesheets="@css/fxmlAnchorPaneMenu.css" text="Alterar Cidade" />
-                        <Button layoutX="-1.0" layoutY="124.0" mnemonicParsing="false" onAction="#mostrarTelaCadastrarEstabelecimento" prefHeight="25.0" prefWidth="296.0" styleClass="buttons" stylesheets="@css/fxmlAnchorPaneMenu.css" text="Cadastrar Estabelecimento" />
-                        <Button layoutX="-1.0" layoutY="189.0" mnemonicParsing="false" onAction="#mostrarTelaAdicionarRotas" prefHeight="25.0" prefWidth="296.0" styleClass="buttons" stylesheets="@css/fxmlAnchorPaneMenu.css" text="Adicionar Rotas" />
-                        <Button layoutX="-1.0" layoutY="62.0" mnemonicParsing="false" onAction="#mostrarTelaAdicionarIntersecao" prefHeight="31.0" prefWidth="296.0" styleClass="buttons" stylesheets="@css/fxmlAnchorPaneMenu.css" text="Adicionar Interseção" />
-                        <Button layoutX="-1.0" layoutY="93.0" mnemonicParsing="false" onAction="#mostrarTelaSelecionarIntersecao" prefHeight="31.0" prefWidth="296.0" styleClass="buttons" stylesheets="@css/fxmlAnchorPaneMenu.css" text="Alterar Interseção" />
-                        <Button layoutX="-1.0" layoutY="156.0" mnemonicParsing="false" onAction="#mostrarTelaSelecionarEstabelecimento" prefHeight="31.0" prefWidth="296.0" styleClass="buttons" stylesheets="@css/fxmlAnchorPaneMenu.css" text="Alterar Estabelecimento" />
+                        <Button layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" onAction="#mostrarTelaAdicicaoCidade" prefHeight="25.0" prefWidth="296.0" styleClass="buttonsMenu" stylesheets="@css/styles.css" text="Adicionar Cidade" />
+                        <Button layoutX="-1.0" layoutY="30.0" mnemonicParsing="false" onAction="#mostrarTelaSelecaoCidade" prefHeight="25.0" prefWidth="296.0" styleClass="buttonsMenu" stylesheets="@css/styles.css" text="Alterar Cidade" />
+                        <Button layoutX="-1.0" layoutY="124.0" mnemonicParsing="false" onAction="#mostrarTelaCadastrarEstabelecimento" prefHeight="25.0" prefWidth="296.0" styleClass="buttonsMenu" stylesheets="@css/styles.css" text="Cadastrar Estabelecimento" />
+                        <Button layoutX="-1.0" layoutY="189.0" mnemonicParsing="false" onAction="#mostrarTelaAdicionarRotas" prefHeight="25.0" prefWidth="296.0" styleClass="buttonsMenu" stylesheets="@css/styles.css" text="Adicionar Rotas" />
+                        <Button layoutX="-1.0" layoutY="62.0" mnemonicParsing="false" onAction="#mostrarTelaAdicionarIntersecao" prefHeight="31.0" prefWidth="296.0" styleClass="buttonsMenu" stylesheets="@css/styles.css" text="Adicionar Interseção" />
+                        <Button layoutX="-1.0" layoutY="93.0" mnemonicParsing="false" onAction="#mostrarTelaSelecionarIntersecao" prefHeight="31.0" prefWidth="296.0" styleClass="buttonsMenu" stylesheets="@css/styles.css" text="Alterar Interseção" />
+                        <Button layoutX="-1.0" layoutY="156.0" mnemonicParsing="false" onAction="#mostrarTelaSelecionarEstabelecimento" prefHeight="31.0" prefWidth="296.0" styleClass="buttonsMenu" stylesheets="@css/styles.css" text="Alterar Estabelecimento" />
                      </children>
                   </AnchorPane>
             </content>
           </TitledPane>
           <TitledPane animated="false" onDragDetected="#mostrarTelaPesquisarUsuario" text="Usuários">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="anchorPane" stylesheets="@css/fxmlAnchorPaneMenu.css">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="anchorPaneMenu" stylesheets="@css/styles.css">
                      <children>
-                        <Button layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" onAction="#mostrarTelaPesquisarUsuario" prefHeight="25.0" prefWidth="296.0" styleClass="buttons" stylesheets="@css/fxmlAnchorPaneMenu.css" text="Pesquisar Usuário" />
+                        <Button layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" onAction="#mostrarTelaPesquisarUsuario" prefHeight="25.0" prefWidth="296.0" styleClass="buttonsMenu" stylesheets="@css/styles.css" text="Pesquisar Usuário" />
                      </children>
                   </AnchorPane>
             </content>

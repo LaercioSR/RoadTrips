@@ -3,7 +3,7 @@ package br.uefs.ecomp.RoadTrips.util;
 import br.uefs.ecomp.RoadTrips.exceptions.DadoDuplicadoException;
 import br.uefs.ecomp.RoadTrips.exceptions.DadoNaoEncontradoException;
 
-public interface IHashTable {
+public interface IHashTable extends Iterable {
     
     public void put(Object o) throws DadoDuplicadoException;
     

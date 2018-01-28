@@ -2,6 +2,8 @@ package br.uefs.ecomp.RoadTrips.util;
 
 import br.uefs.ecomp.RoadTrips.exceptions.DadoDuplicadoException;
 import br.uefs.ecomp.RoadTrips.exceptions.DadoNaoEncontradoException;
+import java.util.Iterator;
+import java.util.LinkedList;
 
 public class HashTable implements IHashTable {
     private final double LOAD_FACTOR = 0.5;
@@ -129,5 +131,18 @@ public class HashTable implements IHashTable {
         }
         
         return x;
+    }
+
+    @Override
+    public Iterator iterator() {
+        LinkedList linkedList = new LinkedList();
+        
+        for(Object a: datas){
+            if(a != null && a != EMPTY){
+                linkedList.add(a);
+            }
+        }
+        
+        return linkedList.descendingIterator();
     }
 }

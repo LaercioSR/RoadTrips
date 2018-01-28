@@ -10,7 +10,7 @@ package br.uefs.ecomp.RoadTrips.model;
 public class Intersecao extends Ponto {
     private TipoIntersecao tipoIntersecao;
 
-    public Intersecao(TipoIntersecao tipoIntersecao, int codigo, int longitude, int latitude) {
+    public Intersecao(TipoIntersecao tipoIntersecao, int codigo, double longitude, double latitude) {
         super(codigo, longitude, latitude);
         this.tipoIntersecao = tipoIntersecao;
     }

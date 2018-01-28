@@ -7,12 +7,24 @@ package br.uefs.ecomp.RoadTrips.model;
  */
 public abstract class Ponto {
     private int codigo;
-    private int longitude;
-    private int latitude;
+    private double longitude;
+    private double latitude;
 
-    public Ponto(int codigo, int longitude, int latitude) {
+    public Ponto(int codigo, double longitude, double latitude) {
         this.codigo = codigo;
         this.longitude = longitude;
         this.latitude = latitude;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
     }
 }

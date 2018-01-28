@@ -6,9 +6,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="296.0" styleClass="anchorPane" stylesheets="@css/fxmlAnchorPaneMenu.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.uefs.ecomp.RoadTrips.controller.FXMLAnchorPaneMenuController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="296.0" styleClass="anchorPaneMenu" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.uefs.ecomp.RoadTrips.controller.FXMLAnchorPaneMenuController">
    <children>
-      <Button layoutY="33.0" mnemonicParsing="false" onAction="#mostrarTelaNovaViagem" prefHeight="31.0" prefWidth="296.0" styleClass="buttons" stylesheets="@css/fxmlAnchorPaneMenu.css" text="Nova Viagem" textAlignment="JUSTIFY" />
-      <Button mnemonicParsing="false" onAction="#mostrarTelaMinhasViagens" prefHeight="25.0" prefWidth="296.0" styleClass="buttons" stylesheets="@css/fxmlAnchorPaneMenu.css" text="Minhas Viagens" />
+      <Button layoutY="33.0" mnemonicParsing="false" onAction="#mostrarTelaNovaViagem" prefHeight="31.0" prefWidth="296.0" styleClass="buttonsMenu" stylesheets="@css/styles.css" text="Nova Viagem" textAlignment="JUSTIFY" />
+      <Button mnemonicParsing="false" onAction="#mostrarTelaMinhasViagens" prefHeight="25.0" prefWidth="296.0" styleClass="buttonsMenu" stylesheets="@css/styles.css" text="Minhas Viagens" />
    </children>
 </AnchorPane>

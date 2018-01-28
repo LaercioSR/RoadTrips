@@ -1,14 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="974.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="br.uefs.ecomp.RoadTrips.controller.FXMLAnchorPaneSelecionarIntersecaoController">
+<AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="974.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.uefs.ecomp.RoadTrips.controller.FXMLAnchorPaneSelecionarIntersecaoController">
    <children>
-      <Label layoutX="417.0" layoutY="320.0" text="Selecionar Interseção" />
+      <Group AnchorPane.topAnchor="15.0">
+         <children>
+            <Label layoutX="405.0" layoutY="14.0" text="Editar Interseção" AnchorPane.topAnchor="15.0">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="394.0" layoutY="42.0" text="Selecione uma Interseção">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+      <Group layoutX="292.0" layoutY="57.0" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="75.0">
+         <children>
+            <Button layoutX="507.0" layoutY="552.0" mnemonicParsing="false" onAction="#editarIntersecaoSelecionada" prefHeight="35.0" prefWidth="110.0" text="Editar">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button layoutX="364.0" layoutY="552.0" mnemonicParsing="false" onAction="#cancelarEdicaoIntersecao" prefHeight="35.0" prefWidth="137.0" text="Cancelar" />
+         </children>
+      </Group>
+      <TableView fx:id="tableViewIntersecao" layoutX="75.0" layoutY="93.0" prefHeight="472.0" prefWidth="824.0" AnchorPane.bottomAnchor="95.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0">
+        <columns>
+            <TableColumn fx:id="tableColumnCodigo" prefWidth="60.0" text="Código" />
+          <TableColumn fx:id="tableColumnNome" prefWidth="279.0" text="Nome" />
+            <TableColumn fx:id="tableColumnTipo" prefWidth="165.0" text="Tipo" />
+            <TableColumn prefWidth="312.0" text="Coordenadas">
+               <columns>
+                <TableColumn fx:id="tableColumnLatitude" minWidth="0.0" prefWidth="160.0" text="Latitude" />
+                  <TableColumn fx:id="tableColumnLongitude" prefWidth="160.0" text="Longitude" />
+               </columns>
+            </TableColumn>
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.scene.media.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -10,20 +11,20 @@
 
 <AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="974.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.uefs.ecomp.RoadTrips.controller.FXMLAnchorPaneAdicionarCidadeController">
    <children>
-      <Label layoutX="415.0" layoutY="14.0" text="Adicionar Cidade" AnchorPane.topAnchor="15.0">
+      <Label fx:id="labelTitulo" layoutX="415.0" layoutY="14.0" text="Adicionar Cidade" AnchorPane.topAnchor="15.0">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
       <Button layoutX="76.0" layoutY="512.0" mnemonicParsing="false" onAction="#adicionarImagem" prefHeight="31.0" prefWidth="260.0" text="Adicionar Imagem" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="638.0" />
-      <Group layoutX="306.0" layoutY="92.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="645.0" AnchorPane.rightAnchor="75.0">
+      <Group layoutX="306.0" layoutY="92.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="645.0" AnchorPane.rightAnchor="75.0">
          <children>
             <Button layoutX="483.0" layoutY="505.0" mnemonicParsing="false" onAction="#salvarCidade" prefHeight="35.0" prefWidth="110.0" text="Salvar">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button layoutX="339.0" layoutY="505.0" mnemonicParsing="false" onAction="#cancelarAdicionamentoCidade" prefHeight="35.0" prefWidth="137.0" text="Cancelar" />
+            <Button layoutX="339.0" layoutY="505.0" mnemonicParsing="false" onAction="#cancelarSalvamentoCidade" prefHeight="35.0" prefWidth="137.0" text="Cancelar" />
          </children>
       </Group>
       <GridPane layoutX="150.0" layoutY="60.0" prefHeight="314.0" prefWidth="658.0">
@@ -58,12 +59,15 @@
       </GridPane>
       <Group layoutY="4.0">
          <children>
-            <VBox layoutX="108.0" layoutY="383.0" prefHeight="21.0" prefWidth="759.0" styleClass="areaImagensBarra" stylesheets="@css/fxmlAnchorPaneCidades.css" AnchorPane.bottomAnchor="260.0" AnchorPane.leftAnchor="108.0" AnchorPane.rightAnchor="107.0" AnchorPane.topAnchor="383.0">
+            <VBox layoutX="108.0" layoutY="384.0" prefHeight="21.0" prefWidth="759.0" styleClass="areaVisualizacaoBarra" stylesheets="@css/styles.css" AnchorPane.bottomAnchor="-212.0" AnchorPane.leftAnchor="108.0" AnchorPane.rightAnchor="-108.0" AnchorPane.topAnchor="384.0">
                <children>
                   <Label prefHeight="21.0" prefWidth="87.0" text="  Imagens" />
                </children>
             </VBox>
-            <AnchorPane layoutX="108.0" layoutY="406.0" prefHeight="173.0" prefWidth="759.0" styleClass="areaImagens" stylesheets="@css/fxmlAnchorPaneCidades.css" />
+            <AnchorPane layoutX="108.0" layoutY="406.0" prefHeight="173.0" prefWidth="759.0" styleClass="areaVisualizacao" stylesheets="@css/styles.css">
+               <children>
+                  <ListView fx:id="listViewImagens" prefHeight="171.0" prefWidth="757.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children></AnchorPane>
          </children>
       </Group>
    </children>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.input.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -16,11 +17,12 @@
                <children>
                   <AnchorPane prefHeight="60.0" prefWidth="974.0">
                      <children>
-                        <MenuButton fx:id="menuButtonUsuario" layoutX="830.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="144.0">
+                        <MenuButton fx:id="menuButtonUsuario" layoutX="815.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="160.0" styleClass="menuButtonUsuario" stylesheets="@css/styles.css">
                           <items>
                             <MenuItem mnemonicParsing="false" onAction="#deslogarUsuario" text="Sair" />
                           </items>
                         </MenuButton>
+                        <ImageView fx:id="imageViewLogo" fitHeight="59.0" fitWidth="214.0" layoutX="14.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="anchorPaneView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="974.0" />

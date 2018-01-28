@@ -1,14 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="974.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="br.uefs.ecomp.RoadTrips.controller.FXMLAnchorPaneAdicionarIntersecaoController">
+<AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="974.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.uefs.ecomp.RoadTrips.controller.FXMLAnchorPaneAdicionarIntersecaoController">
    <children>
-      <Label layoutX="422.0" layoutY="320.0" text="Adicionar Inteseção" />
+      <Label layoutX="394.0" layoutY="44.0" text="Adicionar Interseção" AnchorPane.topAnchor="15.0">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font></Label>
+      <GridPane layoutX="273.0" layoutY="91.0" prefHeight="207.0" prefWidth="440.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="10.0" prefWidth="109.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="337.0" minWidth="10.0" prefWidth="331.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Nome" />
+            <TextField fx:id="textFieldNome" GridPane.columnIndex="1" />
+            <Label text="Tipo" GridPane.rowIndex="1" />
+            <ChoiceBox fx:id="choiceBoxTipo" prefHeight="31.0" prefWidth="337.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Coordenadas" GridPane.rowIndex="2" />
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <Group>
+                     <children>
+                        <TextField fx:id="textFieldLatitude" layoutY="11.0" prefHeight="31.0" prefWidth="160.0" promptText="Latitude" />
+                        <TextField fx:id="textFieldLongitude" layoutX="171.0" layoutY="11.0" prefHeight="31.0" prefWidth="160.0" promptText="Longitude" />
+                     </children>
+                  </Group>
+               </children>
+            </AnchorPane>
+            <Label text="Selecione os Pontos Ligados" wrapText="true" GridPane.rowIndex="3" />
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <ChoiceBox fx:id="choiceBoxPontos" layoutY="10.0" prefHeight="31.0" prefWidth="194.0" />
+                  <TextField fx:id="textFieldDistancia" layoutX="198.0" layoutY="10.0" prefHeight="31.0" prefWidth="82.0" promptText="Distância" />
+                  <Button layoutX="285.0" layoutY="10.0" mnemonicParsing="false" onAction="#adicionarRota" prefHeight="31.0" prefWidth="47.0" text="Ok" />
+               </children>
+            </AnchorPane>
+         </children>
+      </GridPane>
+      <Group layoutX="316.0" layoutY="102.0" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="75.0">
+         <children>
+            <Button layoutX="483.0" layoutY="505.0" mnemonicParsing="false" onAction="#salvarIntersecao" prefHeight="35.0" prefWidth="110.0" text="Salvar">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button layoutX="339.0" layoutY="505.0" mnemonicParsing="false" onAction="#cancelarrSalvamentoIntersecao" prefHeight="35.0" prefWidth="137.0" text="Cancelar" />
+         </children>
+      </Group>
+      <Group layoutX="130.0" layoutY="-54.0">
+         <children>
+            <VBox layoutX="108.0" layoutY="384.0" prefHeight="23.0" prefWidth="510.0" styleClass="areaVisualizacaoBarra" stylesheets="@css/styles.css" AnchorPane.bottomAnchor="-212.0" AnchorPane.leftAnchor="108.0" AnchorPane.rightAnchor="-108.0" AnchorPane.topAnchor="384.0">
+               <children>
+                  <Label prefHeight="21.0" prefWidth="218.0" text="  Pontos Ligados Pela Interseção" />
+               </children>
+            </VBox>
+            <AnchorPane layoutX="108.0" layoutY="406.0" prefHeight="192.0" prefWidth="510.0" styleClass="areaVisualizacao" stylesheets="@css/styles.css">
+               <children>
+                  <TableView fx:id="tableViewPontos" layoutX="29.0" layoutY="-13.0" prefHeight="189.0" prefWidth="759.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                      <TableColumn fx:id="tableColumnNome" prefWidth="244.0" text="Nome" />
+                      <TableColumn fx:id="tableColumnTipo" prefWidth="149.0" text="Tipo" />
+                        <TableColumn fx:id="tableColumnDistancia" prefWidth="114.0" text="Distância" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </children>
+      </Group>
    </children>
 </AnchorPane>
