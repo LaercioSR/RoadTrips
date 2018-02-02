@@ -52,6 +52,11 @@ public class Grafo implements IGrafo {
         verticeB.removeEdge(verticeA);
     }
     
+    public Vertex getVertex(Object a) throws DadoNaoEncontradoException {
+        Vertex novo = new Vertex(a);
+        return (Vertex) vertices.get(novo);
+    }
+    
     @Override
     public Iterator iterator() {
         return vertices.iterator();

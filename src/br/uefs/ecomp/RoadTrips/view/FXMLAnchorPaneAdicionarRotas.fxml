@@ -34,13 +34,14 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ChoiceBox prefHeight="31.0" prefWidth="223.0" GridPane.columnIndex="1" />
-            <ChoiceBox prefHeight="31.0" prefWidth="205.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ChoiceBox fx:id="choiceBoxPontoA" prefHeight="31.0" prefWidth="223.0" GridPane.columnIndex="1" />
+            <ChoiceBox fx:id="choiceBoxPontoB" prefHeight="31.0" prefWidth="205.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="textFieldDistancia" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="Ponto A" />
             <Label text="Ponto B" GridPane.rowIndex="1" />
             <Label text="Distância" GridPane.rowIndex="2" />
          </children>
       </GridPane>
+      <Label fx:id="labelMensagemErro" layoutX="384.0" layoutY="358.0" textFill="RED" />
    </children>
 </AnchorPane>

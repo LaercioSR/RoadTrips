@@ -1,6 +1,8 @@
 package br.uefs.ecomp.RoadTrips.model;
 
+import br.uefs.ecomp.RoadTrips.exceptions.DadoDuplicadoException;
 import br.uefs.ecomp.RoadTrips.util.HashTable;
+import java.util.Iterator;
 import java.util.LinkedList;
 import javafx.scene.image.Image;
 
@@ -9,7 +11,6 @@ import javafx.scene.image.Image;
  * @see Ponto
  */
 public class Cidade extends Ponto {
-    private String nome;
     private double area;
     private int populacao;
     private String descricao;
@@ -19,16 +20,12 @@ public class Cidade extends Ponto {
     
     public Cidade(String nome, int codigo, double area, int populacao, String descricao, double latitude, 
                   double longitude, LinkedList<Image> imagens) {
-        super(codigo, longitude, latitude);
-        this.nome = nome;
+        super(codigo, nome, latitude, longitude);
         this.area = area;
         this.populacao = populacao;
         this.descricao = descricao;
         this.imagens = imagens;
-    }
-    
-    public String getNome() {
-        return nome;
+        lugaresComer = new HashTable();
     }
 
     public double getArea() {
@@ -47,10 +44,6 @@ public class Cidade extends Ponto {
         return imagens;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public void setArea(double area) {
         this.area = area;
     }
@@ -61,5 +54,21 @@ public class Cidade extends Ponto {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+    
+    public void addLugarComer(Estabelecimento estabelecimento) throws DadoDuplicadoException {
+        lugaresComer.put(estabelecimento);
+    }
+    
+    public Iterator iteratorEstabelecimentos() {
+        LinkedList<Estabelecimento> estabelecimentos = new LinkedList<>();
+        Iterator it;
+        
+        it = lugaresComer.iterator();
+        while(it.hasNext()){
+            estabelecimentos.add((Estabelecimento)it.next());
+        }
+        
+        return estabelecimentos.descendingIterator();
     }
 }

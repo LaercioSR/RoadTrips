@@ -9,7 +9,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="974.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.uefs.ecomp.RoadTrips.controller.FXMLAnchorPaneAdicionarIntersecaoController">
    <children>
-      <Label layoutX="394.0" layoutY="44.0" text="Adicionar Interseção" AnchorPane.topAnchor="15.0">
+      <Label fx:id="labelTitulo" layoutX="394.0" layoutY="44.0" text="Adicionar Interseção" AnchorPane.topAnchor="15.0">
          <font>
             <Font name="System Bold" size="20.0" />
          </font></Label>
@@ -57,7 +57,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button layoutX="339.0" layoutY="505.0" mnemonicParsing="false" onAction="#cancelarrSalvamentoIntersecao" prefHeight="35.0" prefWidth="137.0" text="Cancelar" />
+            <Button layoutX="339.0" layoutY="505.0" mnemonicParsing="false" onAction="#cancelarSalvamentoIntersecao" prefHeight="35.0" prefWidth="137.0" text="Cancelar" />
          </children>
       </Group>
       <Group layoutX="130.0" layoutY="-54.0">
@@ -71,14 +71,15 @@
                <children>
                   <TableView fx:id="tableViewPontos" layoutX="29.0" layoutY="-13.0" prefHeight="189.0" prefWidth="759.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                      <TableColumn fx:id="tableColumnNome" prefWidth="244.0" text="Nome" />
-                      <TableColumn fx:id="tableColumnTipo" prefWidth="149.0" text="Tipo" />
-                        <TableColumn fx:id="tableColumnDistancia" prefWidth="114.0" text="Distância" />
+                      <TableColumn fx:id="tableColumnNome" prefWidth="244.0" resizable="false" text="Nome" />
+                      <TableColumn fx:id="tableColumnTipo" prefWidth="149.0" resizable="false" text="Tipo" />
+                        <TableColumn fx:id="tableColumnDistancia" prefWidth="114.0" resizable="false" text="Distância" />
                     </columns>
                   </TableView>
                </children>
             </AnchorPane>
          </children>
       </Group>
+      <Label fx:id="labelMensagemErro" layoutX="408.0" layoutY="292.0" textFill="RED" />
    </children>
 </AnchorPane>

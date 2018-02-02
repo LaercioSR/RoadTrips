@@ -132,8 +132,9 @@ public class FXMLTelaInicialController implements Initializable {
         FXMLAnchorPaneAdicionarIntersecaoController controllerAdicionarIntersecao = loader.getController();
         controllerAdicionarIntersecao.setController(controller);
         controllerAdicionarIntersecao.setControllerTela(this);
+        controllerAdicionarIntersecao.carregarChoiceBoxPontos();
         if(intersecao != null){
-            
+            controllerAdicionarIntersecao.carregarEdicao(intersecao);
         }
         anchorPaneView.getChildren().setAll(a);
     }
@@ -144,7 +145,9 @@ public class FXMLTelaInicialController implements Initializable {
         loader.setLocation(getClass().getResource("/br/uefs/ecomp/RoadTrips/view/FXMLAnchorPaneSelecionarIntersecao.fxml"));
         a = loader.load();
         FXMLAnchorPaneSelecionarIntersecaoController controllerSelecionarIntersecao = loader.getController();
+        controllerSelecionarIntersecao.setController(controller);
         controllerSelecionarIntersecao.setControllerTela(this);
+        controllerSelecionarIntersecao.carregarTableViewIntersecao();
         anchorPaneView.getChildren().setAll(a);
     }
     
@@ -156,8 +159,9 @@ public class FXMLTelaInicialController implements Initializable {
         FXMLAnchorPaneCadastrarEstabelecimentoController controllerCadastrarEstabelecimento = loader.getController();
         controllerCadastrarEstabelecimento.setController(controller);
         controllerCadastrarEstabelecimento.setControllerTela(this);
+        controllerCadastrarEstabelecimento.carregarChoiceBoxCidade();
         if(estabelecimento != null){
-            
+            controllerCadastrarEstabelecimento.carregarEdicao(estabelecimento);
         }
         anchorPaneView.getChildren().setAll(a);
     }
@@ -168,7 +172,9 @@ public class FXMLTelaInicialController implements Initializable {
         loader.setLocation(getClass().getResource("/br/uefs/ecomp/RoadTrips/view/FXMLAnchorPaneSelecionarEstabelecimento.fxml"));
         a = loader.load();
         FXMLAnchorPaneSelecionarEstabelecimentoController controllerSelecionarEstabelecimento = loader.getController();
+        controllerSelecionarEstabelecimento.setController(controller);
         controllerSelecionarEstabelecimento.setControllerTela(this);
+        controllerSelecionarEstabelecimento.carregarTableViewEstabelecimentos();
         anchorPaneView.getChildren().setAll(a);
     }
     
@@ -180,6 +186,7 @@ public class FXMLTelaInicialController implements Initializable {
         FXMLAnchorPaneAdicionarRotasController controllerAdicionarRota = loader.getController();
         controllerAdicionarRota.setController(controller);
         controllerAdicionarRota.setControllerTela(this);
+        controllerAdicionarRota.carregarChoiceBox();
         anchorPaneView.getChildren().setAll(a);
     }
     

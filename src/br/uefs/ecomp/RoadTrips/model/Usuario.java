@@ -28,9 +28,21 @@ public class Usuario {
     public String getSenha() {
         return senha;
     }
+
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public String getEmail() {
+        return email;
+    }
     
     public boolean isAdmin() {
         return tipoUsuario == TipoUsuario.admin;
+    }
+
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
     
     @Override

@@ -30,7 +30,7 @@ public class RoadTripsMain extends Application {
         
         try {
             controller.cadastrarUsuario("Laercio", "", "laercio.rios13@hotmail.com");
-            controller.cadastrarUsuario("", "", "");
+            controller.cadastrarUsuario("", "", "lesh.rios13@gmail.com");
         } catch (DadoDuplicadoException ex) {
             Logger.getLogger(RoadTripsMain.class.getName()).log(Level.SEVERE, null, ex);
         }

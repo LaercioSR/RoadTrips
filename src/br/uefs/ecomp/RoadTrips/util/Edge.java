@@ -10,4 +10,16 @@ public class Edge {
         this.vertexB = vertexB;
         this.peso = peso;
     }
+
+    public Vertex getVertexA() {
+        return vertexA;
+    }
+
+    public Vertex getVertexB() {
+        return vertexB;
+    }
+
+    public double getPeso() {
+        return peso;
+    }
 }

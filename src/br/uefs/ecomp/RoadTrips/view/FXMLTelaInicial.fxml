@@ -17,7 +17,7 @@
                <children>
                   <AnchorPane prefHeight="60.0" prefWidth="974.0">
                      <children>
-                        <MenuButton fx:id="menuButtonUsuario" layoutX="815.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="160.0" styleClass="menuButtonUsuario" stylesheets="@css/styles.css">
+                        <MenuButton fx:id="menuButtonUsuario" layoutX="815.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="160.0" styleClass="buttons" stylesheets="@css/styles.css">
                           <items>
                             <MenuItem mnemonicParsing="false" onAction="#deslogarUsuario" text="Sair" />
                           </items>

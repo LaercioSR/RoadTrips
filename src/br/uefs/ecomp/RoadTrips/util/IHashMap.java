@@ -2,6 +2,7 @@ package br.uefs.ecomp.RoadTrips.util;
 
 import br.uefs.ecomp.RoadTrips.exceptions.DadoDuplicadoException;
 import br.uefs.ecomp.RoadTrips.exceptions.DadoNaoEncontradoException;
+import java.util.Iterator;
 
 public interface IHashMap {
     
@@ -16,4 +17,6 @@ public interface IHashMap {
     public boolean isEmpty();
     
     public int size();
+    
+    public Iterator iterator();
 }

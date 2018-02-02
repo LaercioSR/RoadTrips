@@ -2,8 +2,7 @@ package br.uefs.ecomp.RoadTrips.util;
 
 import br.uefs.ecomp.RoadTrips.exceptions.DadoDuplicadoException;
 import br.uefs.ecomp.RoadTrips.exceptions.DadoNaoEncontradoException;
-import br.uefs.ecomp.RoadTrips.util.Grafo;
-import br.uefs.ecomp.RoadTrips.util.HashMap;
+import java.util.Iterator;
 
 public class Vertex {
 
@@ -26,9 +25,20 @@ public class Vertex {
     public void removeEdge(Vertex v) throws DadoNaoEncontradoException {
         arestas.removeKey(v);
     }
+    
+    public Iterator iteratorEdge() {
+        return arestas.iterator();
+    }
 
     @Override
     public int hashCode() {
         return data.hashCode();
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        if(o instanceof Vertex)
+            return data.equals(((Vertex) o).getData());
+        return false;
     }
 }

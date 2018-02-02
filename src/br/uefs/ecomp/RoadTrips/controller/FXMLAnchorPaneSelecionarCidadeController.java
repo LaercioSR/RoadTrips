@@ -34,7 +34,6 @@ public class FXMLAnchorPaneSelecionarCidadeController implements Initializable {
     @FXML
     private TableColumn<Cidade, String> tableColumnLongitude;
 
-    ObservableList<Cidade> observableListCidades;
     private RoadTripsController controller;
     private FXMLTelaInicialController controllerTela;
     private Cidade cidade = null;
@@ -77,7 +76,7 @@ public class FXMLAnchorPaneSelecionarCidadeController implements Initializable {
         tableColumnArea.setCellValueFactory(new PropertyValueFactory("area"));
         tableColumnArea.setStyle("-fx-alignment: CENTER;");
 
-        observableListCidades = FXCollections.observableArrayList(cidades);
+        ObservableList<Cidade> observableListCidades = FXCollections.observableArrayList(cidades);
         tableViewCidades.setItems(observableListCidades);
     }
 
@@ -88,6 +87,8 @@ public class FXMLAnchorPaneSelecionarCidadeController implements Initializable {
 
     @FXML
     void editarCidadeSelecionada(ActionEvent event) throws IOException {
-        controllerTela.carregarAnchorPaneAdicionarCidade(cidade);
+        if(cidade != null){
+            controllerTela.carregarAnchorPaneAdicionarCidade(cidade);
+        }
     }
 }

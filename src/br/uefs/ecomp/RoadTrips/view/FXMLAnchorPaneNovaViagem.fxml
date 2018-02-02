@@ -1,14 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="974.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="br.uefs.ecomp.RoadTrips.controller.FXMLAnchorPaneNovaViagemController">
+<AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="974.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.uefs.ecomp.RoadTrips.controller.FXMLAnchorPaneNovaViagemController">
    <children>
-      <Label layoutX="442.0" layoutY="320.0" text="Nova Viagem" />
+      <Label fx:id="labelTitulo" layoutX="424.0" layoutY="14.0" text="Nova Viagem" AnchorPane.topAnchor="15.0">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font></Label>
+      <Group layoutX="316.0" layoutY="102.0" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="75.0">
+         <children>
+            <Button layoutX="483.0" layoutY="505.0" mnemonicParsing="false" onAction="#salvarViagem" prefHeight="35.0" prefWidth="110.0" text="Salvar">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button layoutX="339.0" layoutY="505.0" mnemonicParsing="false" onAction="#cancelarSalvamentoViagem" prefHeight="35.0" prefWidth="137.0" text="Cancelar" />
+         </children>
+      </Group>
+      <TabPane fx:id="tabPaneViagem" layoutX="85.0" layoutY="212.0" prefHeight="325.0" prefWidth="783.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Untitled Tab 1">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <TextField layoutX="259.0" layoutY="152.0" />
+      <Label layoutX="128.0" layoutY="157.0" text="Nome do Viagem" />
+      <Button layoutX="85.0" layoutY="602.0" mnemonicParsing="false" onAction="#adicionarCidade" text="Adicionar Cidade" />
    </children>
 </AnchorPane>

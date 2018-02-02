@@ -7,17 +7,23 @@ package br.uefs.ecomp.RoadTrips.model;
  */
 public abstract class Ponto {
     private int codigo;
-    private double longitude;
+    private String nome;
     private double latitude;
+    private double longitude;
 
-    public Ponto(int codigo, double longitude, double latitude) {
+    public Ponto(int codigo, String nome, double latitude, double longitude) {
         this.codigo = codigo;
-        this.longitude = longitude;
+        this.nome = nome;
         this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public int getCodigo() {
         return codigo;
+    }
+    
+    public String getNome() {
+        return nome;
     }
 
     public double getLongitude() {
@@ -26,5 +32,21 @@ public abstract class Ponto {
 
     public double getLatitude() {
         return latitude;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    
+    @Override
+    public String toString() {
+        return nome;
+    }
+    
+    @Override
+    public boolean equals(Object a) {
+        if(a instanceof Ponto)
+            return nome.equals(((Ponto) a).getNome());
+        return false;
     }
 }

@@ -9,7 +9,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="974.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.uefs.ecomp.RoadTrips.controller.FXMLAnchorPaneCadastrarEstabelecimentoController">
    <children>
-      <Label layoutX="358.0" layoutY="315.0" text="Cadastrar Estabelecimentos" AnchorPane.topAnchor="15.0">
+      <Label fx:id="labelTitulo" layoutX="358.0" layoutY="315.0" text="Cadastrar Estabelecimentos" AnchorPane.topAnchor="15.0">
          <font>
             <Font name="System Bold" size="20.0" />
          </font></Label>
@@ -57,5 +57,6 @@
          </children>
       </GridPane>
       <Button layoutX="86.0" layoutY="522.0" mnemonicParsing="false" onAction="#adicionarImagem" prefHeight="31.0" prefWidth="260.0" text="Adicionar Imagem" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="75.0" />
+      <Label fx:id="labelMensagemErro" layoutX="363.0" layoutY="314.0" textFill="RED" />
    </children>
 </AnchorPane>

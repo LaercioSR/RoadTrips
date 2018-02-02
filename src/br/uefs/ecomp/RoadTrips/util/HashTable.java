@@ -42,13 +42,13 @@ public class HashTable implements IHashTable {
 
     @Override
     public Object get(Object o) throws DadoNaoEncontradoException {
-        int pos = o.hashCode() % tamanhoArray;
+        int i = encontrarPosicao(o);
         
-        while(datas[pos] != null){
-            if(datas[pos] != EMPTY && datas[pos].equals(o)){
-                return datas[pos];
+        while(datas[i] != null){
+            if(datas[i] != EMPTY && datas[i].equals(o)){
+                return datas[i];
             }
-            pos = (pos + 1) % tamanhoArray;
+            i = (i + 1) % tamanhoArray;
         }
         
         throw new DadoNaoEncontradoException();

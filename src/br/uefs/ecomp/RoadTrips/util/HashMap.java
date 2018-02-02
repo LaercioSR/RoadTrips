@@ -2,10 +2,12 @@ package br.uefs.ecomp.RoadTrips.util;
 
 import br.uefs.ecomp.RoadTrips.exceptions.DadoDuplicadoException;
 import br.uefs.ecomp.RoadTrips.exceptions.DadoNaoEncontradoException;
+import java.util.Iterator;
+import java.util.LinkedList;
 
 public class HashMap implements IHashMap {
     private final double LOAD_FACTOR = 0.5;
-    private final Entry EMPTY = new Entry(null, null);
+    private final Entry EMPTY = new Entry(new Object(), new Object());
     
     private Entry[] entries;
     private int tamanhoArray;
@@ -31,7 +33,7 @@ public class HashMap implements IHashMap {
         @Override
         public boolean equals(Object o){
             if(o instanceof Entry)
-                return (key == null && ((Entry) o).key == null) || (key != null && key.equals(((Entry) o).getKey()));
+                return (key == null && ((Entry) o).getKey() == null) || (key != null && key.equals(((Entry) o).getKey()));
             return false;
         }
     }
@@ -166,5 +168,18 @@ public class HashMap implements IHashMap {
         }
         
         return x;
+    }
+    
+    @Override
+    public Iterator iterator() {
+        LinkedList linkedList = new LinkedList();
+        
+        for(Entry a: entries){
+            if(a != null && a != EMPTY){
+                linkedList.add(a.getValue());
+            }
+        }
+        
+        return linkedList.descendingIterator();
     }
 }

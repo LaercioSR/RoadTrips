@@ -23,7 +23,7 @@
     -fx-background-color: #e4e4e4;
 }
 
-.menuButtonUsuario {
+.buttons {
     -fx-background-color: #e4e4e4;
     -fx-border-color: lightgrey;
 }
@@ -34,4 +34,12 @@
 
 .anchorPaneMenu {
     -fx-background-color: white;
+}
+
+.textFieldPesquisa {
+    -fx-background-color: white;
+    -fx-border-color: lightgrey;
+}
+.textFieldPesquisa:focused {
+    -fx-border-color: darkgrey;
 }

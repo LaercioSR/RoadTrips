@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 public class HashingSenha {
     
-    public static String condificar(String senha) {
+    public static String codificar(String senha) {
         MessageDigest algorithm;
         
         try {
