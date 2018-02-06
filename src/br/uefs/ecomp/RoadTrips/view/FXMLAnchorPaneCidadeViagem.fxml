@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="395.0" prefWidth="805.0" styleClass="anchorPaneMenu" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.uefs.ecomp.RoadTrips.controller.FXMLAnchorPaneCidadeViagemController">
+   <children>
+      <Label layoutX="33.0" layoutY="14.0" text="CIDADE:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelCidade" layoutX="111.0" layoutY="17.0" prefHeight="21.0" prefWidth="185.0" text="       " />
+      <DatePicker fx:id="datePickerChegada" disable="true" layoutX="399.0" layoutY="12.0" prefHeight="31.0" prefWidth="157.0" />
+      <DatePicker fx:id="datePickerPartida" disable="true" layoutX="634.0" layoutY="12.0" prefHeight="31.0" prefWidth="157.0" />
+      <Label layoutX="323.0" layoutY="15.0" text="Chegada: ">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="568.0" layoutY="15.0" text="Partida:">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="imageViewLugaresComer" fitHeight="235.0" fitWidth="458.0" layoutX="230.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
+         <viewport>
+            <Rectangle2D height="350.0" width="500.0" />
+         </viewport>
+      </ImageView>
+      <Group layoutX="-73.0" layoutY="23.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b8b8b899" height="44.0" layoutX="303.0" layoutY="283.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="335.0" />
+            <Label layoutX="386.0" layoutY="292.0" text="Lugares para Comer">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+   </children>
+</AnchorPane>

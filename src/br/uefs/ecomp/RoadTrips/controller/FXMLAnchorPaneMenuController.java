@@ -28,7 +28,7 @@ public class FXMLAnchorPaneMenuController implements Initializable {
 
     @FXML
     void mostrarTelaNovaViagem(ActionEvent event) throws IOException {
-        controller.carregarAnchorPaneNovaViagem();
+        controller.carregarAnchorPaneNovaViagem(null);
     }
     
     @FXML

@@ -4,6 +4,7 @@ import br.uefs.ecomp.RoadTrips.model.Cidade;
 import br.uefs.ecomp.RoadTrips.model.Estabelecimento;
 import br.uefs.ecomp.RoadTrips.model.Intersecao;
 import br.uefs.ecomp.RoadTrips.model.Usuario;
+import br.uefs.ecomp.RoadTrips.model.Viagem;
 import br.uefs.ecomp.RoadTrips.view.RoadTripsMain;
 import java.io.IOException;
 import java.net.URL;
@@ -35,8 +36,8 @@ public class FXMLTelaInicialController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        imageViewLogo.setImage(new Image("/br/uefs/ecomp/RoadTrips/icon/logoRoadTrips.png"));
-        iconMenuButtonUsuario = new Image("/br/uefs/ecomp/RoadTrips/icon/iconUsuario.png");
+        imageViewLogo.setImage(new Image("/br/uefs/ecomp/RoadTrips/imagens/logoRoadTrips.png"));
+        iconMenuButtonUsuario = new Image("/br/uefs/ecomp/RoadTrips/imagens/iconUsuario.png");
     }
 
     public void setApplication(RoadTripsMain application) {
@@ -84,10 +85,12 @@ public class FXMLTelaInicialController implements Initializable {
         FXMLAnchorPaneMinhasViagensController controllerViagens = loader.getController();
         controllerViagens.setController(controller);
         controllerViagens.setControllerTela(this);
+        controllerViagens.setUsuario(usuario);
+        controllerViagens.carregarListViewViagens();
         anchorPaneView.getChildren().setAll(a);
     }
     
-    public void carregarAnchorPaneNovaViagem() throws IOException {
+    public void carregarAnchorPaneNovaViagem(Viagem viagem) throws IOException {
         AnchorPane a;
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/br/uefs/ecomp/RoadTrips/view/FXMLAnchorPaneNovaViagem.fxml"));
@@ -95,6 +98,24 @@ public class FXMLTelaInicialController implements Initializable {
         FXMLAnchorPaneNovaViagemController controllerViagem = loader.getController();
         controllerViagem.setController(controller);
         controllerViagem.setControllerTela(this);
+        controllerViagem.setUsuario(usuario);
+        if(viagem != null){
+            controllerViagem.carregarEdicao(viagem);
+        } else{
+            controllerViagem.adicionarCidade(null);
+        }
+        anchorPaneView.getChildren().setAll(a);
+    }
+    
+    public void carregarAnchorPaneViagem(Viagem Viagem) throws IOException {
+        AnchorPane a;
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/br/uefs/ecomp/RoadTrips/view/FXMLAnchorPaneViagem.fxml"));
+        a = loader.load();
+        FXMLAnchorPaneViagemController controllerViagem = loader.getController();
+        controllerViagem.setController(controller);
+        controllerViagem.setControllerTela(this);
+        controllerViagem.carregar(Viagem);
         anchorPaneView.getChildren().setAll(a);
     }
     
@@ -109,6 +130,18 @@ public class FXMLTelaInicialController implements Initializable {
         if(cidade != null){
             controllerAdicionarCidade.carregarEdicao(cidade);
         }
+        anchorPaneView.getChildren().setAll(a);
+    }
+    
+    public void carregarAnchorPaneLugaresComer(Cidade cidade) throws IOException {
+        AnchorPane a;
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/br/uefs/ecomp/RoadTrips/view/FXMLAnchorPaneLugaresComer.fxml"));
+        a = loader.load();
+        FXMLAnchorPaneLugaresComerController controllerLugaresComer = loader.getController();
+        controllerLugaresComer.setControllerTela(this);
+        controllerLugaresComer.setCidade(cidade);
+        controllerLugaresComer.carregar();
         anchorPaneView.getChildren().setAll(a);
     }
     

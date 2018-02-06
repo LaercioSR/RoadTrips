@@ -39,7 +39,7 @@ public class RoadTripsMain extends Application {
         stage = primaryStage;
         
         mostrarTelaLogin();
-        stage.getIcons().add(new Image("/br/uefs/ecomp/RoadTrips/icon/iconRoadTrips8.png"));
+        stage.getIcons().add(new Image("/br/uefs/ecomp/RoadTrips/imagens/iconRoadTrips.png"));
         stage.setResizable(false);
         stage.show();
     }

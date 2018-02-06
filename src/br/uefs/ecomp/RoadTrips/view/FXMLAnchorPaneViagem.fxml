@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="974.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.uefs.ecomp.RoadTrips.controller.FXMLAnchorPaneViagemController">
+   <children>
+      <Label fx:id="labelNomeViagem" layoutX="470.0" layoutY="21.0" AnchorPane.topAnchor="15.0">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Button layoutX="493.0" layoutY="515.0" mnemonicParsing="false" onAction="#editarViagem" prefHeight="35.0" prefWidth="110.0" text="Editar" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="75.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <TabPane fx:id="tabPaneCidade" layoutX="95.0" layoutY="133.0" prefHeight="434.0" prefWidth="805.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="84.0" />
+   </children>
+</AnchorPane>

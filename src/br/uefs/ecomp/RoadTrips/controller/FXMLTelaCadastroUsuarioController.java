@@ -37,7 +37,7 @@ public class FXMLTelaCadastroUsuarioController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        imageViewLogo.setImage(new Image("/br/uefs/ecomp/RoadTrips/icon/logoRoadTrips.png"));
+        imageViewLogo.setImage(new Image("/br/uefs/ecomp/RoadTrips/imagens/logoRoadTrips.png"));
         
         textFieldUsuario.setOnKeyPressed((KeyEvent e) -> {
             if (e.getCode() == KeyCode.ENTER) {

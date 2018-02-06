@@ -10,6 +10,7 @@ import br.uefs.ecomp.RoadTrips.model.TipoEstabelecimento;
 import br.uefs.ecomp.RoadTrips.model.TipoIntersecao;
 import br.uefs.ecomp.RoadTrips.model.TipoUsuario;
 import br.uefs.ecomp.RoadTrips.model.Usuario;
+import br.uefs.ecomp.RoadTrips.model.Viagem;
 import br.uefs.ecomp.RoadTrips.util.Grafo;
 import br.uefs.ecomp.RoadTrips.util.HashMap;
 import br.uefs.ecomp.RoadTrips.util.HashingSenha;
@@ -95,5 +96,15 @@ public class RoadTripsController {
         if(tipoEstabelecimento == TipoEstabelecimento.LugaresParaComer){
             cidade.addLugarComer(new Estabelecimento(nome, tipoEstabelecimento, cidade, imagens));
         }
+    }
+    
+    public Viagem criarViagem(String nomeViagem) {
+        Viagem viagem = new Viagem(nomeViagem);
+        
+        return viagem;
+    }
+    
+    public void adiocionarViagemUsuario(Usuario usuario, Viagem viagem) {
+        usuario.addViagem(viagem);
     }
 }

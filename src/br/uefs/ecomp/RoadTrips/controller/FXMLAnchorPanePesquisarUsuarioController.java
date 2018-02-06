@@ -49,7 +49,7 @@ public class FXMLAnchorPanePesquisarUsuarioController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        iconButtonPesquisa = new Image("/br/uefs/ecomp/RoadTrips/icon/iconPesquisa.png");
+        iconButtonPesquisa = new Image("/br/uefs/ecomp/RoadTrips/imagens/iconPesquisa.png");
         buttonPesquisa.setGraphic(new ImageView(iconButtonPesquisa));
     }        
     

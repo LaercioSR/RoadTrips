@@ -1,5 +1,6 @@
 package br.uefs.ecomp.RoadTrips.model;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
@@ -19,6 +20,7 @@ public class Usuario {
         this.login = login;
         this.senha = senha;
         this.email = email;
+        viagens = new LinkedList();
     }
 
     public String getLogin() {
@@ -43,6 +45,14 @@ public class Usuario {
 
     public void setTipoUsuario(TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
+    }
+    
+    public void addViagem(Viagem viagem) {
+        viagens.add(viagem);
+    }
+    
+    public Iterator iteratorViagem() {
+        return viagens.descendingIterator();
     }
     
     @Override

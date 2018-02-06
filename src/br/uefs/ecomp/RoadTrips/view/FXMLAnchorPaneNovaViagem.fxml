@@ -23,17 +23,14 @@
             <Button layoutX="339.0" layoutY="505.0" mnemonicParsing="false" onAction="#cancelarSalvamentoViagem" prefHeight="35.0" prefWidth="137.0" text="Cancelar" />
          </children>
       </Group>
-      <TabPane fx:id="tabPaneViagem" layoutX="85.0" layoutY="212.0" prefHeight="325.0" prefWidth="783.0" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-          <Tab text="Untitled Tab 1">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-            </content>
-          </Tab>
-        </tabs>
-      </TabPane>
-      <TextField layoutX="259.0" layoutY="152.0" />
-      <Label layoutX="128.0" layoutY="157.0" text="Nome do Viagem" />
+      <TabPane fx:id="tabPaneViagem" layoutX="85.0" layoutY="152.0" prefHeight="405.0" prefWidth="805.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="84.0" />
+      <Group layoutX="-43.0" layoutY="-50.0">
+         <children>
+            <TextField fx:id="textFieldNomeViagem" layoutX="259.0" layoutY="152.0" />
+            <Label layoutX="128.0" layoutY="157.0" text="Nome do Viagem" />
+         </children>
+      </Group>
       <Button layoutX="85.0" layoutY="602.0" mnemonicParsing="false" onAction="#adicionarCidade" text="Adicionar Cidade" />
+      <Label fx:id="labelMensagemErro" layoutX="322.0" layoutY="566.0" textFill="RED" />
    </children>
 </AnchorPane>
