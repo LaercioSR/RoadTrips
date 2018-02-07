@@ -18,6 +18,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
+/**
+ * Controller da tela principal do programa, sendo usada para carregar as partes 
+ * que divide a tela.
+ */
 public class FXMLTelaInicialController implements Initializable {
     @FXML
     private AnchorPane anchorPaneMenu;  
@@ -34,24 +38,48 @@ public class FXMLTelaInicialController implements Initializable {
     private Image iconMenuButtonUsuario;
     
     
+    /**
+     * Método inicializa os dados do FXML.
+     * @param url 
+     * @param rb 
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         imageViewLogo.setImage(new Image("/br/uefs/ecomp/RoadTrips/imagens/logoRoadTrips.png"));
         iconMenuButtonUsuario = new Image("/br/uefs/ecomp/RoadTrips/imagens/iconUsuario.png");
     }
 
+    /**
+     * Método setta a classe {@link br.uefs.ecomp.RoadTrips.view.RoadTripsMain Main} 
+     * da aplicação.
+     * @param application Classe main da aplicação.
+     */
     public void setApplication(RoadTripsMain application) {
         this.application = application;
     }
 
+    /**
+     * Método setta o (@link br.uefs.ecomp.RoadTrips.controller.RoadTripsController 
+     * controller} principal da aplicação.
+     * @param controller Controller principal da aplicação.
+     */
     public void setController(RoadTripsController controller) {
         this.controller = controller;
     }
 
+    /**
+     * Método setta o usuário que está logado no sistema.
+     * @param usuario Usuário logado.
+     */
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
     
+    /**
+     * Método carrega o menu adequado ao sistema, sendo um para os ADMIN's e outro 
+     * para os usuário comuns.
+     * @throws IOException Caso o menu não consiga ser carregado.
+     */
     public void carregarAnchorPaneMenu() throws IOException {
         AnchorPane a;
         FXMLLoader loader = new FXMLLoader();
@@ -67,16 +95,29 @@ public class FXMLTelaInicialController implements Initializable {
         carregarAnchorPaneMinhasViagens();
     }
     
+    /**
+     * Método carrega o MenuButton com o nome do usuário logado.
+     */
     public void carregarMenuButtonUsuario() {
         menuButtonUsuario.setText(usuario.getLogin());
         menuButtonUsuario.setGraphic(new ImageView(iconMenuButtonUsuario));
     }
     
+    /**
+     * Método disparado por um ActionEvent que desloga o usuário.
+     * @param event Evento que disparou o método.
+     * @throws IOException Caso a tela de login não consiga ser carregada.
+     */
     @FXML
     void deslogarUsuario(ActionEvent event) throws IOException {
         application.mostrarTelaLogin();
     }
     
+    /**
+     * Método que carrega e exibe a divisão direita da tela para exibir as 
+     * viagens do usuário logado.
+     * @throws IOException Caso a tela não consiga ser carregado.
+     */
     public void carregarAnchorPaneMinhasViagens() throws IOException {
         AnchorPane a;
         FXMLLoader loader = new FXMLLoader();
@@ -90,6 +131,12 @@ public class FXMLTelaInicialController implements Initializable {
         anchorPaneView.getChildren().setAll(a);
     }
     
+    /**
+     * Método que carrega e exibe a divisão direita da tela para exibir o cadastro 
+     * ou edição de uma viagem do usuário.
+     * @param viagem Caso necessário, viagem a ser editado.
+     * @throws IOException Caso a tela não consiga ser carregado.
+     */
     public void carregarAnchorPaneNovaViagem(Viagem viagem) throws IOException {
         AnchorPane a;
         FXMLLoader loader = new FXMLLoader();
@@ -107,6 +154,12 @@ public class FXMLTelaInicialController implements Initializable {
         anchorPaneView.getChildren().setAll(a);
     }
     
+    /**
+     * Método que carrega e exibe a divisão direita da tela para exibir uma viagem
+     * do usuário.
+     * @param Viagem Viagem a ser exibida.
+     * @throws IOException Caso a tela não consiga ser carregado.
+     */
     public void carregarAnchorPaneViagem(Viagem Viagem) throws IOException {
         AnchorPane a;
         FXMLLoader loader = new FXMLLoader();
@@ -119,6 +172,12 @@ public class FXMLTelaInicialController implements Initializable {
         anchorPaneView.getChildren().setAll(a);
     }
     
+    /**
+     * Método que carrega e exibe a divisão direita da tela para exibir o cadastro
+     * ou edição de uma cidade.
+     * @param cidade Caso necessário, cidade a ser editada.
+     * @throws IOException Caso a tela não consiga ser carregado.
+     */
     public void carregarAnchorPaneAdicionarCidade(Cidade cidade) throws IOException {
         AnchorPane a;
         FXMLLoader loader = new FXMLLoader();
@@ -133,6 +192,12 @@ public class FXMLTelaInicialController implements Initializable {
         anchorPaneView.getChildren().setAll(a);
     }
     
+    /**
+     * Método que carrega e exibe a divisão direita da tela para exibir os lugares
+     * para se comer de uma cidade.
+     * @param cidade Cidade que terá seus lugares de comer exibidos.
+     * @throws IOException Caso a tela não consiga ser carregado.
+     */
     public void carregarAnchorPaneLugaresComer(Cidade cidade) throws IOException {
         AnchorPane a;
         FXMLLoader loader = new FXMLLoader();
@@ -145,6 +210,11 @@ public class FXMLTelaInicialController implements Initializable {
         anchorPaneView.getChildren().setAll(a);
     }
     
+    /**
+     * Método que carrega e exibe a divisão direita da tela para exibir uma tabela
+     * das cidades cadastradas, para que possa ser selecionada uma para edição.
+     * @throws IOException Caso a tela não consiga ser carregado.
+     */
     public void carregarAnchorPaneSelecionarCidade() throws IOException {
         AnchorPane a;
         FXMLLoader loader = new FXMLLoader();
@@ -157,6 +227,12 @@ public class FXMLTelaInicialController implements Initializable {
         anchorPaneView.getChildren().setAll(a);
     }
     
+     /**
+     * Método que carrega e exibe a divisão direita da tela para exibir o cadastro
+     * ou edição de uma interseção.
+     * @param intersecao Caso necessário, interseção a ser editada.
+     * @throws IOException Caso a tela não consiga ser carregado.
+     */   
     public void carregarAnchorPaneAdicionarIntersecao(Intersecao intersecao) throws IOException {
         AnchorPane a;
         FXMLLoader loader = new FXMLLoader();
@@ -172,6 +248,11 @@ public class FXMLTelaInicialController implements Initializable {
         anchorPaneView.getChildren().setAll(a);
     }
     
+    /**
+     * Método que carrega e exibe a divisão direita da tela para exibir uma tabela
+     * das interseções cadastradas, para que possa ser selecionada uma para edição.
+     * @throws IOException Caso a tela não consiga ser carregado.
+     */  
     public void carregarAnchorPaneSelecionarIntersecao() throws IOException {
         AnchorPane a;
         FXMLLoader loader = new FXMLLoader();
@@ -184,6 +265,12 @@ public class FXMLTelaInicialController implements Initializable {
         anchorPaneView.getChildren().setAll(a);
     }
     
+    /**
+     * Método que carrega e exibe a divisão direita da tela para exibir o cadastro
+     * ou edição de um estabelecimento.
+     * @param estabelecimento Caso necessário, estabelecimento a ser editada.
+     * @throws IOException Caso a tela não consiga ser carregado.
+     */   
     public void carregarAnchorPaneCadastrarEstabelecimento(Estabelecimento estabelecimento) throws IOException {
         AnchorPane a;
         FXMLLoader loader = new FXMLLoader();
@@ -199,6 +286,11 @@ public class FXMLTelaInicialController implements Initializable {
         anchorPaneView.getChildren().setAll(a);
     }
     
+    /**
+     * Método que carrega e exibe a divisão direita da tela para exibir uma tabela
+     * dos estabelecimentos cadastrados, para que possa ser selecionada um para edição.
+     * @throws IOException Caso a tela não consiga ser carregado.
+     */ 
     public void carregarAnchorPaneSelecionarEstabelecimento() throws IOException {
         AnchorPane a;
         FXMLLoader loader = new FXMLLoader();
@@ -211,6 +303,11 @@ public class FXMLTelaInicialController implements Initializable {
         anchorPaneView.getChildren().setAll(a);
     }
     
+    /**
+     * Método que carrega e exibe a divisão direita da tela para exibir a adição
+     * de uma nova rota.
+     * @throws IOException Caso a tela não consiga ser carregado.
+     */ 
     public void carregarAnchorPaneAdicionarRotas() throws IOException {
         AnchorPane a;
         FXMLLoader loader = new FXMLLoader();
@@ -223,6 +320,11 @@ public class FXMLTelaInicialController implements Initializable {
         anchorPaneView.getChildren().setAll(a);
     }
     
+    /**
+     * Método que carrega e exibe a divisão direita da tela para exibir a possibilidade
+     * de pesquisar um usuário cadastrado.
+     * @throws IOException Caso a tela não consiga ser carregado.
+     */
     public void carregarAnchorPanePesquisarUsuario() throws IOException {
         AnchorPane a;
         FXMLLoader loader = new FXMLLoader();
