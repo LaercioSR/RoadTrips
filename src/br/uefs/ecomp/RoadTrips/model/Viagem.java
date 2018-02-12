@@ -11,58 +11,40 @@ import java.util.LinkedList;
  */
 public class Viagem {
     private String nome;
-    private LinkedList<CidadeViagem> cidadesViagem;
+    private LinkedList<Parada> paradas;
 
+    /**
+     * Constroi uma viagem com nome passado.
+     * @param nome Nome da viagem.
+     */
     public Viagem(String nome) {
         this.nome = nome;
-        cidadesViagem = new LinkedList();
+        paradas = new LinkedList();
     }
 
+    /**
+     * Método retorna o nome da viagem.
+     * @return Nome da viagem.
+     */
     public String getNome() {
         return nome;
     }
     
-    public void addCidade(Cidade cidade, LocalDate dataChegada, LocalDate dataPartida) {
-        cidadesViagem.add(new CidadeViagem(cidade, dataChegada, dataPartida));
+    /**
+     * Método adiciona uma parada a viagem.
+     * @param cidade Cidade da parada.
+     * @param dataChegada Data de chegada da parada.
+     * @param dataPartida Data de partida da parada.
+     */
+    public void addParada(Cidade cidade, LocalDate dataChegada, LocalDate dataPartida) {
+        paradas.add(new Parada(cidade, dataChegada, dataPartida));
     }
     
-    public Iterator iteratorCidadesViagem() {
-        return cidadesViagem.descendingIterator();
-    }
-
-    public class CidadeViagem{
-        private Cidade cidade;
-        private LocalDate dataChegada;
-        private LocalDate dataPartida;
-
-        public CidadeViagem(Cidade cidade, LocalDate dataChegada, LocalDate dataPartida) {
-            this.cidade = cidade;
-            this.dataChegada = dataChegada;
-            this.dataPartida = dataPartida;
-        }
-
-        public Cidade getCidade() {
-            return cidade;
-        }
-
-        public LocalDate getDataChegada() {
-            return dataChegada;
-        }
-
-        public LocalDate getDataPartida() {
-            return dataPartida;
-        }
-
-        public void setCidade(Cidade cidade) {
-            this.cidade = cidade;
-        }
-
-        public void setDataChegada(LocalDate dataChegada) {
-            this.dataChegada = dataChegada;
-        }
-
-        public void setDataPartida(LocalDate dataPartida) {
-            this.dataPartida = dataPartida;
-        }
+    /**
+     * Método retorna o iterador das paradas da viagem.
+     * @return Iterator das paradas.
+     */
+    public Iterator iteratorParadas() {
+        return paradas.descendingIterator();
     }
 }

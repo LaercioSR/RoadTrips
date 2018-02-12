@@ -11,7 +11,6 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -20,14 +19,19 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+/**
+ * Classe controla a tela de cadastro de um novo usuário.
+ */
 public class FXMLTelaCadastroUsuarioController implements Initializable {
     
-    @FXML private Label labelMensagemErro;
-    @FXML private Button buttonCancelar;
-    @FXML private Button buttonCadastrar;
-    @FXML private PasswordField passwordFieldSenha;
-    @FXML private TextField textFieldEmail;
-    @FXML private TextField textFieldUsuario;
+    @FXML 
+    private Label labelMensagemErro;
+    @FXML 
+    private PasswordField passwordFieldSenha;
+    @FXML 
+    private TextField textFieldEmail;
+    @FXML 
+    private TextField textFieldUsuario;
     @FXML
     private ImageView imageViewLogo;
 
@@ -35,6 +39,11 @@ public class FXMLTelaCadastroUsuarioController implements Initializable {
     private RoadTripsController controller;
 
     
+    /**
+     * Método inicializa os dados do FXML.
+     * @param url Paramêtro padrão do JAVA.
+     * @param rb Paramêtro padrão do JAVA.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         imageViewLogo.setImage(new Image("/br/uefs/ecomp/RoadTrips/imagens/logoRoadTrips.png"));
@@ -52,21 +61,42 @@ public class FXMLTelaCadastroUsuarioController implements Initializable {
         textFieldEmail.setOnKeyPressed(textFieldUsuario.getOnKeyPressed());
         
         MaskTextField.maskEmail(textFieldEmail);
-    }    
+    } 
+    
+    /**
+     * Método setta a classe {@link br.uefs.ecomp.RoadTrips.view.RoadTripsMain Main} 
+     * da aplicação.
+     * @param application Classe main da aplicação.
+     */
     public void setApplication(RoadTripsMain application) {
         textFieldUsuario.requestFocus();
         this.application = application;
     }
 
+    /**
+     * Método setta o {@link br.uefs.ecomp.RoadTrips.controller.RoadTripsController 
+     * controller} principal da aplicação.
+     * @param controller Controller principal da aplicação.
+     */
     public void setController(RoadTripsController controller) {
         this.controller = controller;
     }
     
+    /**
+     * Método disparado por um ActionEvent que cancela o cadastro e volta para tela de login.
+     * @param event Evento que disparou o método.
+     * @throws IOException Caso a tela de login não consiga ser carregada.
+     */
     @FXML
     void cancelarCadastro(ActionEvent event) throws IOException {
         application.mostrarTelaLogin();
     }
 
+    /**
+     * Método disparado por um ActionEvent que cadastra um usuário.
+     * @param event Evento que disparou o método.
+     * @throws IOException Caso a tela de login não consiga ser carregada.
+     */
     @FXML
     void efetuarCadastro(ActionEvent event) throws IOException {
         try {

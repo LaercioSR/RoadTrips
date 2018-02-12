@@ -18,6 +18,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 
+/**
+ * Classe que controla a tela de exibição dos lugares para comer de uma cidade
+ */
 public class FXMLAnchorPaneLugaresComerController implements Initializable {    
     @FXML
     private Label labelTitulo;    
@@ -25,22 +28,30 @@ public class FXMLAnchorPaneLugaresComerController implements Initializable {
     private ListView<AnchorPane> listViewLugaresComer;
 
     private Cidade cidade;
-    private FXMLTelaInicialController controllerTela;
-
-
-    public void setControllerTela(FXMLTelaInicialController controllerTela) {
-        this.controllerTela = controllerTela;
-    }
     
+    
+    /**
+     * Método define a cidade que terá seus lugares para comer mostrados.
+     * @param cidade Cidade dos lugares.
+     */
     public void setCidade(Cidade cidade) {
         this.cidade = cidade;
     }
     
+    /**
+     * Método inicializa os dados do FXML.
+     * @param url Paramêtro padrão do JAVA.
+     * @param rb Paramêtro padrão do JAVA.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //TODO
+        
     }    
     
+    /**
+     * Método carrega tela, exibindo os lugares de comer da cidade.
+     * @throws IOException Caso alguma telinha de estabelecimento não consiga ser carregado.
+     */
     public void carregar() throws IOException{
         String titulo = "Lugares para Comer em " + cidade.getNome();
         labelTitulo.setText(titulo);

@@ -1,9 +1,6 @@
 package br.uefs.ecomp.RoadTrips.util;
 
-import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.geometry.Pos;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 
@@ -50,34 +47,5 @@ public class MaskTextField {
                 event.consume();
             }
         });
-    }
-
-    public static void maskNumeroInteiroComPontos(final TextField textField) {
-        textField.lengthProperty().addListener((ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
-            String value = textField.getText();
-            value = value.replaceAll("[^0-9]", "");
-            value = value.replaceAll("([0-9])([0-9]{3})$", "$1.$2");
-            value = value.replaceAll("([0-9]{1})([0-9]{6})$", "$1.$2");
-            value = value.replaceAll("([0-9]{1})([0-9]{9})$", "$1.$2");
-            value = value.replaceAll("([0-9]{1})([0-9]{12})$", "$1.$2");
-            textField.setText(value);
-            
-            textField.textProperty().addListener((ObservableValue<? extends String> observableValue, String oldValue1, String newValue1) -> {
-                if (newValue1.length() > 17) {
-                    textField.setText(oldValue1);
-                }
-            });
-        });
-
-        /*
-        textField.focusedProperty().addListener((ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean fieldChange) -> {
-            if (!fieldChange) {
-                final int length = textField.getText().length();
-                if (length > 0 && length < 3) {
-                    textField.setText(textField.getText() + "00");
-                }
-            }
-        });
-*/
     }
 }

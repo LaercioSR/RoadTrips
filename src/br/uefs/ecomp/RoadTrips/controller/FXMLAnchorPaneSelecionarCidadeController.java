@@ -17,6 +17,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+/**
+ * Classe controla a tela de seleção de uma cidade, para edição de dados.
+ */
 public class FXMLAnchorPaneSelecionarCidadeController implements Initializable {
 
     @FXML
@@ -38,20 +41,38 @@ public class FXMLAnchorPaneSelecionarCidadeController implements Initializable {
     private FXMLTelaInicialController controllerTela;
     private Cidade cidade = null;
 
+    /**
+     * Método setta o {@link br.uefs.ecomp.RoadTrips.controller.RoadTripsController 
+     * controller} principal da aplicação.
+     * @param controller Controller principal da aplicação.
+     */
     public void setController(RoadTripsController controller) {
         this.controller = controller;
     }
 
+    /**
+     * Método setta o {@link br.uefs.ecomp.RoadTrips.controller.FXMLTelaInicialController 
+     * controller da tela principal} da aplicação, que será usada para trocar a tela do sistema.
+     * @param controllerTela Controller da tela principal da aplicação.
+     */
     public void setControllerTela(FXMLTelaInicialController controllerTela) {
         this.controllerTela = controllerTela;
     }
-
+    
+    /**
+     * Método inicializa os dados do FXML.
+     * @param url Paramêtro padrão do JAVA.
+     * @param rb Paramêtro padrão do JAVA.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tableViewCidades.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> cidade = newValue);
     }
 
+    /**
+     * Método carrega a TableView com as cidades cadastradas no sistema.
+     */
     public void carregarTableViewCidades() {
         Iterator it = controller.iteratorPontos();
         LinkedList<Cidade> cidades = new LinkedList<>();
@@ -80,11 +101,21 @@ public class FXMLAnchorPaneSelecionarCidadeController implements Initializable {
         tableViewCidades.setItems(observableListCidades);
     }
 
+    /**
+     * Método disparado por um ActionEvent que cancela a seleção de cidade. 
+     * @param event Evento que disparou o método.
+     * @throws IOException Caso a tela de minhas viagens não consiga ser carregada.
+     */
     @FXML
     void cancelarEdicaoCidade(ActionEvent event) throws IOException {
         controllerTela.carregarAnchorPaneMinhasViagens();
     }
 
+    /**
+     * Método disparado por um ActionEvent que carrega a edição da cidade selecionada. 
+     * @param event Evento que disparou o método.
+     * @throws IOException Caso a tela de adição de cidade não consiga ser carregada.
+     */
     @FXML
     void editarCidadeSelecionada(ActionEvent event) throws IOException {
         if(cidade != null){

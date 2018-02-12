@@ -10,7 +10,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.uefs.ecomp.RoadTrips.controller.FXMLTelaLoginController">
    <children>
-      <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="350.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="350.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Group layoutY="44.0">
                <children>
@@ -30,12 +30,12 @@
             </Group>
             <Group AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0">
                <children>
-                  <Button fx:id="buttonEntrar" layoutX="183.0" layoutY="348.0" mnemonicParsing="false" onAction="#processarLogin" text="Entrar">
+                  <Button layoutX="183.0" layoutY="348.0" mnemonicParsing="false" onAction="#processarLogin" text="Entrar">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Button>
-                  <Button fx:id="buttonCadastrar" layoutX="43.0" layoutY="348.0" mnemonicParsing="false" onAction="#cadastrarUsuario" text="Cadastrar-se">
+                  <Button layoutX="43.0" layoutY="348.0" mnemonicParsing="false" onAction="#cadastrarUsuario" text="Cadastrar-se">
                      <font>
                         <Font size="18.0" />
                      </font>

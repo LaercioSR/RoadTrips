@@ -30,7 +30,7 @@
             <Label layoutX="128.0" layoutY="157.0" text="Nome do Viagem" />
          </children>
       </Group>
-      <Button layoutX="85.0" layoutY="602.0" mnemonicParsing="false" onAction="#adicionarCidade" text="Adicionar Cidade" />
+      <Button layoutX="85.0" layoutY="602.0" mnemonicParsing="false" onAction="#adicionarParada" text="Adicionar Parada" />
       <Label fx:id="labelMensagemErro" layoutX="322.0" layoutY="566.0" textFill="RED" />
    </children>
 </AnchorPane>

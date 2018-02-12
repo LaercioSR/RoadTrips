@@ -28,6 +28,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+/**
+ * Classe controla a tela de adição de uma nova interseção ao sistema, usada 
+ * também para editar uma interseção.
+ */
 public class FXMLAnchorPaneAdicionarIntersecaoController implements Initializable {
     @FXML
     private Label labelTitulo;
@@ -61,14 +65,29 @@ public class FXMLAnchorPaneAdicionarIntersecaoController implements Initializabl
     private Intersecao intersecao;
     
 
+    /**
+     * Método setta o {@link br.uefs.ecomp.RoadTrips.controller.RoadTripsController 
+     * controller} principal da aplicação.
+     * @param controller Controller principal da aplicação.
+     */
     public void setController(RoadTripsController controller) {
         this.controller = controller;
     }
 
+    /**
+     * Método setta o {@link br.uefs.ecomp.RoadTrips.controller.FXMLTelaInicialController 
+     * controller da tela principal} da aplicação, que será usada para trocar a tela do sistema.
+     * @param controllerTela Controller da tela principal da aplicação.
+     */
     public void setControllerTela(FXMLTelaInicialController controllerTela) {
         this.controllerTela = controllerTela;
     }
     
+    /**
+     * Método inicializa os dados do FXML.
+     * @param url Paramêtro padrão do JAVA.
+     * @param rb Paramêtro padrão do JAVA.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         MaskTextField.maskNumeroReal(textFieldDistancia);
@@ -76,6 +95,10 @@ public class FXMLAnchorPaneAdicionarIntersecaoController implements Initializabl
         carregarChoiceBoxTipo();
     }
     
+    /**
+     * Método é usado para carregar a tela para editar uma interseção.
+     * @param intersecao Intersecao a ser editada.
+     */
     public void carregarEdicao(Intersecao intersecao) {
         this.intersecao = intersecao;
         
@@ -114,6 +137,9 @@ public class FXMLAnchorPaneAdicionarIntersecaoController implements Initializabl
         carregarTableViewPontos();
     }
     
+    /**
+     * Método carregar a ChoiceBox para seleção do tipo de interseção.
+     */
     public void carregarChoiceBoxTipo() {
         LinkedList itens = new LinkedList();
         itens.add(TipoIntersecao.cruzamento);
@@ -123,6 +149,9 @@ public class FXMLAnchorPaneAdicionarIntersecaoController implements Initializabl
         choiceBoxTipo.setItems(FXCollections.observableArrayList(itens));
     }
     
+    /**
+     * Método carregar a ChoiceBox para seleção de pontos para adicionar uma aresta.
+     */
     public void carregarChoiceBoxPontos() {
         LinkedList pontos = new LinkedList();
         Iterator it = controller.iteratorPontos();
@@ -135,6 +164,9 @@ public class FXMLAnchorPaneAdicionarIntersecaoController implements Initializabl
         choiceBoxPontos.setItems(FXCollections.observableArrayList(pontos));
     }
 
+    /**
+     * Método carrega a TableView de arestas da interseção.
+     */
     private void carregarTableViewPontos() {
         tableColumnNome.setCellValueFactory(new PropertyValueFactory("nome"));
         tableColumnNome.setStyle("-fx-alignment: CENTER;");
@@ -147,6 +179,10 @@ public class FXMLAnchorPaneAdicionarIntersecaoController implements Initializabl
         tableViewPontos.setItems(observableListPontosLigados);
     }
     
+    /**
+     * Método disparado por um ActionEvent que adiciona uma aresta a interseção.
+     * @param event Evento que disparou o método.
+     */
     @FXML
     void adicionarRota(ActionEvent event) {
         labelMensagemErro.setText("");
@@ -171,6 +207,11 @@ public class FXMLAnchorPaneAdicionarIntersecaoController implements Initializabl
         carregarTableViewPontos();
     }
     
+    /**
+     * Método disparado por um ActionEvent que salva a interseção. 
+     * @param event Evento que disparou o método.
+     * @throws IOException Caso a tela de adição ou a de seleção de interseção não consiga ser carregada.
+     */
     @FXML
     void salvarIntersecao(ActionEvent event) {
         if(validarEntradaDados()){
@@ -197,13 +238,20 @@ public class FXMLAnchorPaneAdicionarIntersecaoController implements Initializabl
             } catch (IOException ex) { }
         }
     }
-
+    
+    /**
+     * Método disparado por um ActionEvent que cancela o salvamento da interseção. 
+     * @param event Evento que disparou o método.
+     * @throws IOException Caso a tela de minhas viagens ou a de seleção de interseção 
+     * não consiga ser carregada.
+     */
     @FXML
     void cancelarSalvamentoIntersecao(ActionEvent event) throws IOException {
         controllerTela.carregarAnchorPaneMinhasViagens();
     }
 
-    public boolean validarEntradaDados() {
+    //Método que verifica se os dados da interseção estão preenchidos corretamente para poderem ser salvos.
+    private boolean validarEntradaDados() {
         Alert alerta = new Alert(Alert.AlertType.ERROR);
         String msgErro = "";
         if(textFieldNome.getText().equals("")){
@@ -234,36 +282,69 @@ public class FXMLAnchorPaneAdicionarIntersecaoController implements Initializabl
         }
     }
     
+    /**
+     * Classe interna de {@code FXMLAnchorPaneAdicionarIntersecaoController} para salvar 
+     * e depois criar arestas a interseção.
+     */
     public class PontoLigado{
         private Ponto ponto;
         private double distancia;
         private boolean rotaCriada = false;
 
+        /**
+         * Constroi um PontoLigado com dados passados.
+         * @param ponto
+         * @param distancia 
+         */
         public PontoLigado(Ponto ponto, double distancia) {
             this.ponto = ponto;
             this.distancia = distancia;
         }
         
+        /**
+         * Método retorna o ponto da aresta.
+         * @return Ponto da aresta.
+         */
         public Ponto getPonto() {
             return ponto;
         }
 
+        /**
+         * Método retorna a distância (peso) da interseção até o ponto.
+         * @return Distância da interseção até o ponto.
+         */
         public double getDistancia() {
             return distancia;
         }
         
+        /**
+         * Método retorna o nome ponto da aresta.
+         * @return Nome ponto da aresta.
+         */
         public String getNome() {
             return ponto.getNome();
         }
         
+        /**
+         * Método retorna o tipo ponto da aresta.
+         * @return Tipo ponto da aresta.
+         */
         public String getTipo() {
             return ponto instanceof Intersecao ? "Interseção" : "Cidade";
         }
 
+        /**
+         * Método verifica se a aresta já existe.
+         * @return True se a aresta já existe.
+         */
         public boolean isRotaCriada() {
             return rotaCriada;
         }
 
+        /**
+         * Método modifica o valor de RotaCriada.
+         * @param rotaCriada Novo valor de RotaCriada.
+         */
         public void setRotaCriada(boolean rotaCriada) {
             this.rotaCriada = rotaCriada;
         }

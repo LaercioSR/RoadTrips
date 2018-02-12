@@ -1,6 +1,6 @@
 package br.uefs.ecomp.RoadTrips.controller;
 
-import br.uefs.ecomp.RoadTrips.model.Viagem.CidadeViagem;
+import br.uefs.ecomp.RoadTrips.model.Parada;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,7 +13,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-public class FXMLAnchorPaneCidadeViagemController implements Initializable { 
+/**
+ * Classe que controla a telinha que exibe uma parada de uma viagem.
+ */
+public class FXMLAnchorPaneParadaController implements Initializable { 
     @FXML
     private Label labelCidade;   
     @FXML
@@ -24,13 +27,23 @@ public class FXMLAnchorPaneCidadeViagemController implements Initializable {
     private ImageView imageViewLugaresComer;
     
     private FXMLTelaInicialController controllerTela;
-    private CidadeViagem cidadeViagem;
+    private Parada cidadeViagem;
 
 
+    /**
+     * Método setta o {@link br.uefs.ecomp.RoadTrips.controller.FXMLTelaInicialController 
+     * controller da tela principal} da aplicação, que será usada para trocar a tela do sistema.
+     * @param controllerTela Controller da tela principal da aplicação.
+     */
     public void setControllerTela(FXMLTelaInicialController controllerTela) {
         this.controllerTela = controllerTela;
     }
-
+    
+    /**
+     * Método inicializa os dados do FXML.
+     * @param url Paramêtro padrão do JAVA.
+     * @param rb Paramêtro padrão do JAVA.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         imageViewLugaresComer.setImage(new Image("/br/uefs/ecomp/RoadTrips/imagens/lugaresComer.jpg"));
@@ -46,11 +59,15 @@ public class FXMLAnchorPaneCidadeViagemController implements Initializable {
         });
     }    
     
-    public void carregar(CidadeViagem cidadeViagem){
-        this.cidadeViagem = cidadeViagem;
+    /**
+     * Método carrega a tela com as informações da parada.
+     * @param parada Parada para carregar as informações.
+     */
+    public void carregar(Parada parada){
+        this.cidadeViagem = parada;
         
-        labelCidade.setText(cidadeViagem.getCidade().getNome());
-        datePickerChegada.setValue(cidadeViagem.getDataChegada());
-        datePickerPartida.setValue(cidadeViagem.getDataPartida());
+        labelCidade.setText(parada.getCidade().getNome());
+        datePickerChegada.setValue(parada.getDataChegada());
+        datePickerPartida.setValue(parada.getDataPartida());
     }
 }

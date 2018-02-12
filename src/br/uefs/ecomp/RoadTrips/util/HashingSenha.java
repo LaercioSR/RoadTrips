@@ -6,8 +6,17 @@ import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Classe {@code HashingSenha} cria um hash para uma String.
+ * @author Laercio
+ */
 public class HashingSenha {
     
+    /**
+     * Método cria um hash para a string passada como paramêtro.
+     * @param senha String a ser codificada.
+     * @return Hash da String.
+     */
     public static String codificar(String senha) {
         MessageDigest algorithm;
         

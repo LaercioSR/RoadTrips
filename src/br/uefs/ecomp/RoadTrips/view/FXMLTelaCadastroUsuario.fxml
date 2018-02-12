@@ -34,12 +34,12 @@
       </Group>
       <Group layoutX="-2.0" layoutY="-1.0">
          <children>
-            <Button fx:id="buttonCancelar" layoutX="108.0" layoutY="433.0" mnemonicParsing="false" onAction="#cancelarCadastro" prefHeight="37.0" prefWidth="100.0" text="Cancelar">
+            <Button layoutX="108.0" layoutY="433.0" mnemonicParsing="false" onAction="#cancelarCadastro" prefHeight="37.0" prefWidth="100.0" text="Cancelar">
                <font>
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button fx:id="buttonCadastrar" layoutX="223.0" layoutY="433.0" mnemonicParsing="false" onAction="#efetuarCadastro" prefHeight="37.0" prefWidth="100.0" text="Cadastrar">
+            <Button layoutX="223.0" layoutY="433.0" mnemonicParsing="false" onAction="#efetuarCadastro" prefHeight="37.0" prefWidth="100.0" text="Cadastrar">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>

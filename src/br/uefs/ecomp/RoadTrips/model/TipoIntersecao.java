@@ -5,5 +5,16 @@ package br.uefs.ecomp.RoadTrips.model;
  * @see Intersecao
  */
 public enum TipoIntersecao {
-    rotula, cruzamento, semaforo;
+    /**
+     * Rótula.
+     */
+    rotula,
+    /**
+     * Cruzamento.
+     */
+    cruzamento, 
+    /**
+     * Semaforo.
+     */
+    semaforo;
 }

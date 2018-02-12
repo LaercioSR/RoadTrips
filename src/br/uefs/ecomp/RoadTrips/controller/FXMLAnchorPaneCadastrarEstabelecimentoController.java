@@ -31,6 +31,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 
+/**
+ * Classe controla a tela de adição de um novo estabelecimento ao sistema, 
+ * usada também para editar um estabelecimento.
+ */
 public class FXMLAnchorPaneCadastrarEstabelecimentoController implements Initializable {
     @FXML
     private Label labelTitulo;
@@ -51,14 +55,29 @@ public class FXMLAnchorPaneCadastrarEstabelecimentoController implements Initial
     private Estabelecimento estabelecimento;
     
 
+    /**
+     * Método setta o {@link br.uefs.ecomp.RoadTrips.controller.RoadTripsController 
+     * controller} principal da aplicação.
+     * @param controller Controller principal da aplicação.
+     */
     public void setController(RoadTripsController controller) {
         this.controller = controller;
     }
 
+    /**
+     * Método setta o {@link br.uefs.ecomp.RoadTrips.controller.FXMLTelaInicialController 
+     * controller da tela principal} da aplicação, que será usada para trocar a tela do sistema.
+     * @param controllerTela Controller da tela principal da aplicação.
+     */
     public void setControllerTela(FXMLTelaInicialController controllerTela) {
         this.controllerTela = controllerTela;
     }
     
+    /**
+     * Método inicializa os dados do FXML.
+     * @param url Paramêtro padrão do JAVA.
+     * @param rb Paramêtro padrão do JAVA.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         listViewImagens.setOrientation(Orientation.HORIZONTAL);
@@ -66,6 +85,10 @@ public class FXMLAnchorPaneCadastrarEstabelecimentoController implements Initial
         carregarChoiceBoxTipo();
     }   
     
+    /**
+     * Método é usado para carregar a tela para editar uma estabelecimento.
+     * @param estabelecimento Estabelecimento a ser editada.
+     */
     public void carregarEdicao(Estabelecimento estabelecimento) {
         this.estabelecimento = estabelecimento;
         imagensEstabelecimento = estabelecimento.getImagens();
@@ -82,6 +105,9 @@ public class FXMLAnchorPaneCadastrarEstabelecimentoController implements Initial
         carregarListViewImagens();
     }
     
+    /**
+     * Método carregar a ChoiceBox para seleção do tipo do estabelecimento.
+     */
     public void carregarChoiceBoxTipo() {
         LinkedList itens = new LinkedList();
         itens.add(TipoEstabelecimento.LugaresParaComer);
@@ -89,6 +115,9 @@ public class FXMLAnchorPaneCadastrarEstabelecimentoController implements Initial
         choiceBoxTipo.setItems(FXCollections.observableArrayList(itens));
     }
     
+    /**
+     * Método carregar a ChoiceBox para seleção da cidade do estabelecimento.
+     */
     public void carregarChoiceBoxCidade() {
         LinkedList cidades = new LinkedList();
         Iterator it = controller.iteratorPontos();
@@ -103,7 +132,12 @@ public class FXMLAnchorPaneCadastrarEstabelecimentoController implements Initial
         
         choiceBoxCidade.setItems(FXCollections.observableArrayList(cidades));
     }
-        
+       
+    /**
+     * Método disparado por um ActionEvent que possibilita ao usuário adionar imagens 
+     * do estabelecimento.
+     * @param event Evento que disparou o método.
+     */
     @FXML
     void adicionarImagem(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -125,6 +159,9 @@ public class FXMLAnchorPaneCadastrarEstabelecimentoController implements Initial
         carregarListViewImagens();
     }
     
+    /**
+     * Método carregar o ListView de imagens.
+     */
     private void carregarListViewImagens() {
         LinkedList<ImageView> imagens = new LinkedList<>();
         for(Image a: imagensEstabelecimento){
@@ -137,6 +174,12 @@ public class FXMLAnchorPaneCadastrarEstabelecimentoController implements Initial
         listViewImagens.setItems(itens);
     }
     
+    /**
+     * Método disparado por um ActionEvent que salva o estabelecimento. 
+     * @param event Evento que disparou o método.
+     * @throws IOException Caso a tela de adição ou a de seleção de estabelecimento 
+     * não consiga ser carregada.
+     */
     @FXML
     void salvarEstabelecimento(ActionEvent event) throws IOException {
         TipoEstabelecimento tipoEstabelecimento = choiceBoxTipo.getValue();
@@ -157,6 +200,12 @@ public class FXMLAnchorPaneCadastrarEstabelecimentoController implements Initial
         }
     }
 
+    /**
+     * Método disparado por um ActionEvent que cancela o salvamento do estabelecimento. 
+     * @param event Evento que disparou o método.
+     * @throws IOException Caso a tela de minhas viagens ou a de seleção de estabelecimento 
+     * não consiga ser carregada.
+     */
     @FXML
     void cancelarSalvamentoEstabelecimento(ActionEvent event) throws IOException {
         controllerTela.carregarAnchorPaneMinhasViagens();

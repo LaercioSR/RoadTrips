@@ -2,7 +2,7 @@ package br.uefs.ecomp.RoadTrips.controller;
 
 import br.uefs.ecomp.RoadTrips.model.Usuario;
 import br.uefs.ecomp.RoadTrips.model.Viagem;
-import br.uefs.ecomp.RoadTrips.model.Viagem.CidadeViagem;
+import br.uefs.ecomp.RoadTrips.model.Parada;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Iterator;
@@ -19,6 +19,10 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
+/**
+ * Classe controla da tela de adição de nova viagem, usada também para editar uma 
+ * viagem.
+ */
 public class FXMLAnchorPaneNovaViagemController implements Initializable {
     @FXML
     private Label labelTitulo;
@@ -33,27 +37,50 @@ public class FXMLAnchorPaneNovaViagemController implements Initializable {
     private FXMLTelaInicialController controllerTela;
     private Usuario usuario;
     private Viagem viagem;
-    private LinkedList<FXMLAnchorPaneAddCidadeViagemController> controllersCidades = new LinkedList();
+    private LinkedList<FXMLAnchorPaneAdicionarParadaController> controllersCidades = new LinkedList();
     private int contadorCidades = 0;
     
 
+    /**
+     * Método setta o {@link br.uefs.ecomp.RoadTrips.controller.RoadTripsController 
+     * controller} principal da aplicação.
+     * @param controller Controller principal da aplicação.
+     */
     public void setController(RoadTripsController controller) {
         this.controller = controller;
     }
 
+    /**
+     * Método setta o {@link br.uefs.ecomp.RoadTrips.controller.FXMLTelaInicialController 
+     * controller da tela principal} da aplicação, que será usada para trocar a tela do sistema.
+     * @param controllerTela Controller da tela principal da aplicação.
+     */
     public void setControllerTela(FXMLTelaInicialController controllerTela) {
         this.controllerTela = controllerTela;
     }
 
+    /**
+     * Método define o usuário dono da nova viagem.
+     * @param usuario Usuário logado.
+     */
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
     
+    /**
+     * Método inicializa os dados do FXML.
+     * @param url Paramêtro padrão do JAVA.
+     * @param rb Paramêtro padrão do JAVA.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
     }    
     
+    /**
+     * Método é usado para carregar a tela para editar uma viagem.
+     * @param viagem Viagem a ser editada.
+     */
     public void carregarEdicao(Viagem viagem) throws IOException{
         this.viagem = viagem;
         
@@ -61,23 +88,28 @@ public class FXMLAnchorPaneNovaViagemController implements Initializable {
         labelTitulo.setAlignment(Pos.CENTER);
         textFieldNomeViagem.setText(viagem.getNome());
         
-        Iterator itCidadesViagem = viagem.iteratorCidadesViagem();
+        Iterator itCidadesViagem = viagem.iteratorParadas();
         
         while(itCidadesViagem.hasNext()){
-            CidadeViagem cidadeViagem = (CidadeViagem) itCidadesViagem.next();
+            Parada cidadeViagem = (Parada) itCidadesViagem.next();
             
-            adicionarCidade(null);
-            FXMLAnchorPaneAddCidadeViagemController controllerCidade = controllersCidades.peekLast();
+            adicionarParada(null);
+            FXMLAnchorPaneAdicionarParadaController controllerCidade = controllersCidades.peekLast();
             controllerCidade.carregarEdicao(cidadeViagem);
         }
     }
 
+    /**
+     * Método disparado por um ActionEvent que possibilita a adição de uma nova parada na viagem.
+     * @param event Evento que disparou o método.
+     * @throws IOException Caso a telinha de adição de uma parada não consiga ser carregada.
+     */
     @FXML
-    void adicionarCidade(ActionEvent event) throws IOException {AnchorPane a;
+    void adicionarParada(ActionEvent event) throws IOException {AnchorPane a;
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/br/uefs/ecomp/RoadTrips/view/FXMLAnchorPaneAddCidadeViagem.fxml"));
+        loader.setLocation(getClass().getResource("/br/uefs/ecomp/RoadTrips/view/FXMLAnchorPaneAdicionarParada.fxml"));
         a = loader.load();
-        FXMLAnchorPaneAddCidadeViagemController controllerCidade = loader.getController();
+        FXMLAnchorPaneAdicionarParadaController controllerCidade = loader.getController();
         controllerCidade.setController(controller);
         controllerCidade.setIdController(++contadorCidades);
         controllerCidade.carregarComboBoxCidades();
@@ -89,14 +121,20 @@ public class FXMLAnchorPaneNovaViagemController implements Initializable {
         tabPaneViagem.getTabs().add(tab);
     } 
     
+    /**
+     * Método disparado por um ActionEvent que salva a viagem. 
+     * @param event Evento que disparou o método.
+     * @throws IOException Caso a tela de minhas viagens ou a tela da viagem não 
+     * consiga ser carregada.
+     */
     @FXML
     void salvarViagem(ActionEvent event) throws IOException {
         if(viagem == null){
             viagem = controller.criarViagem(textFieldNomeViagem.getText());
 
-            for(FXMLAnchorPaneAddCidadeViagemController a: controllersCidades){
+            for(FXMLAnchorPaneAdicionarParadaController a: controllersCidades){
                 if(a.getCidadeSelecionada() != null && a.getDataChegada() != null && a.getDataPartida() != null){
-                    viagem.addCidade(a.getCidadeSelecionada(), a.getDataChegada(), a.getDataPartida());
+                    viagem.addParada(a.getCidadeSelecionada(), a.getDataChegada(), a.getDataPartida());
                 } else{
                     String mensagemErro = "Cidade " + a.getIdController() + " possui algum campo que não informado";
                     labelMensagemErro.setText(mensagemErro);
@@ -107,9 +145,9 @@ public class FXMLAnchorPaneNovaViagemController implements Initializable {
             controller.adiocionarViagemUsuario(usuario, viagem);
             controllerTela.carregarAnchorPaneMinhasViagens();
         } else{
-            for(FXMLAnchorPaneAddCidadeViagemController a: controllersCidades){
+            for(FXMLAnchorPaneAdicionarParadaController a: controllersCidades){
                 if(a.getCidadeSelecionada() != null && a.getDataChegada() != null && a.getDataPartida() != null){
-                    a.modificarCidadeViagem();
+                    a.modificarParada();
                 } else{
                     String mensagemErro = "Cidade " + a.getIdController() + " possui algum campo que não informado";
                     labelMensagemErro.setText(mensagemErro);
@@ -121,9 +159,17 @@ public class FXMLAnchorPaneNovaViagemController implements Initializable {
         }
     }
 
+    /**
+     * Método disparado por um ActionEvent que cancela o salvamento da viagem. 
+     * @param event Evento que disparou o método.
+     * @throws IOException Caso a tela de minhas viagens ou a tela da viagem não 
+     * consiga ser carregada.
+     */
     @FXML
-    void cancelarSalvamentoViagem(ActionEvent event) {
-
+    void cancelarSalvamentoViagem(ActionEvent event) throws IOException {
+        if(viagem == null)
+            controllerTela.carregarAnchorPaneMinhasViagens();
+        else
+            controllerTela.carregarAnchorPaneViagem(viagem);
     }
-    
 }

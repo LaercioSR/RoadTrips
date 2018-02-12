@@ -14,13 +14,10 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -28,12 +25,13 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
-import javafx.stage.Stage;
 
+/**
+ * Classe controla a tela de adição de uma nova cidade ao sistema, usada 
+ * também para editar uma cidade.
+ */
 public class FXMLAnchorPaneAdicionarCidadeController implements Initializable {
 
     @FXML
@@ -59,33 +57,41 @@ public class FXMLAnchorPaneAdicionarCidadeController implements Initializable {
     private Cidade cidade;
     
     
+    /**
+     * Método setta o {@link br.uefs.ecomp.RoadTrips.controller.RoadTripsController 
+     * controller} principal da aplicação.
+     * @param controller Controller principal da aplicação.
+     */
+    public void setController(RoadTripsController controller) {
+        this.controller = controller;
+    }
+
+    /**
+     * Método setta o {@link br.uefs.ecomp.RoadTrips.controller.FXMLTelaInicialController 
+     * controller da tela principal} da aplicação, que será usada para trocar a tela do sistema.
+     * @param controllerTela Controller da tela principal da aplicação.
+     */
+    public void setControllerTela(FXMLTelaInicialController controllerTela) {
+        this.controllerTela = controllerTela;
+    }
+    
+    /**
+     * Método inicializa os dados do FXML.
+     * @param url Paramêtro padrão do JAVA.
+     * @param rb Paramêtro padrão do JAVA.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         MaskTextField.maskNumeroInteiro(textFieldPopulacao);
         MaskTextField.maskNumeroReal(textFieldArea);
         
         listViewImagens.setOrientation(Orientation.HORIZONTAL);
-        listViewImagens.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                if(event.getClickCount() == 2){
-                    if(!imagensCidade.isEmpty()){
-                        Image image = listViewImagens.getFocusModel().getFocusedItem().getImage();
-                        carregarTelaImageDialog(image);
-                    }
-                }
-            }
-        });
     }    
-
-    public void setController(RoadTripsController controller) {
-        this.controller = controller;
-    }
-
-    public void setControllerTela(FXMLTelaInicialController controllerTela) {
-        this.controllerTela = controllerTela;
-    }
-
+    
+    /**
+     * Método é usado para carregar a tela para editar uma cidade.
+     * @param cidade Cidade a ser editada.
+     */
     public void carregarEdicao(Cidade cidade){
         this.cidade = cidade;
         
@@ -104,6 +110,11 @@ public class FXMLAnchorPaneAdicionarCidadeController implements Initializable {
         carregarListViewImagens();
     }
     
+    /**
+     * Método disparado por um ActionEvent que possibilita ao usuário adionar imagens 
+     * da cidade.
+     * @param event Evento que disparou o método.
+     */
     @FXML
     void adicionarImagem(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -125,6 +136,9 @@ public class FXMLAnchorPaneAdicionarCidadeController implements Initializable {
         carregarListViewImagens();
     }
     
+    /**
+     * Método carregar o ListView de imagens.
+     */
     private void carregarListViewImagens() {
         LinkedList<ImageView> imagens = new LinkedList<>();
         for(Image a: imagensCidade){
@@ -137,6 +151,11 @@ public class FXMLAnchorPaneAdicionarCidadeController implements Initializable {
         listViewImagens.setItems(itens);
     }
 
+    /**
+     * Método disparado por um ActionEvent que salva a cidade. 
+     * @param event Evento que disparou o método.
+     * @throws IOException Caso a tela de adição ou a de seleção de cidade não consiga ser carregada.
+     */
     @FXML
     void salvarCidade(ActionEvent event) throws IOException {
         if(validarEntradaDados()){
@@ -162,6 +181,12 @@ public class FXMLAnchorPaneAdicionarCidadeController implements Initializable {
         }
     }
 
+    /**
+     * Método disparado por um ActionEvent que cancela o salvamento da cidade. 
+     * @param event Evento que disparou o método.
+     * @throws IOException Caso a tela de minhas viagens ou a de seleção de cidade 
+     * não consiga ser carregada.
+     */
     @FXML
     void cancelarSalvamentoCidade(ActionEvent event) throws IOException {
         if(labelTitulo.getText().equals("Adicionar Cidade")){
@@ -171,7 +196,8 @@ public class FXMLAnchorPaneAdicionarCidadeController implements Initializable {
         }
     }
 
-    public boolean validarEntradaDados() {
+    //Método que verifica se os dados da cidade estão preenchidos corretamente para poderem ser salvos.
+    private boolean validarEntradaDados() {
         String msgErro = "";
         if(textFieldNome.getText().equals("")){
             msgErro += "Nome inválido!\n";
@@ -204,37 +230,11 @@ public class FXMLAnchorPaneAdicionarCidadeController implements Initializable {
         }
     }
     
+    // Método exite um alerta sobre a cidade já estar cadastrada.
     private void alertarDuplicacao() {
         Alert alerta = new Alert(Alert.AlertType.ERROR);
         alerta.setTitle("Erro no salvamento");
         alerta.setHeaderText("Cidade já está cadastrada");
         alerta.show();
-    }
-    
-    private void carregarTelaImageDialog(Image image) {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/br/uefs/ecomp/RoadTrips/view/FXMLAnchorPaneImageDialog.fxml"));
-        AnchorPane page = null;
-        try {
-            page = (AnchorPane) loader.load();
-        } catch (IOException ex) { }
-
-        Stage dialogStage = new Stage();
-        if(cidade != null){
-            dialogStage.setTitle("Imagem de " + cidade.getNome());
-        } else{
-            dialogStage.setTitle("Imagem de " + textFieldNome.getText());
-        }
-        
-        Scene scene = new Scene(page);
-        dialogStage.setScene(scene);
-
-        FXMLAnchorPaneImageDialogController controllerDialog = loader.getController();
-        controllerDialog.setDialogStage(dialogStage);
-        controllerDialog.setImage(image);
-        controllerDialog.carregarImagem();
-
-        dialogStage.setResizable(false);
-        dialogStage.showAndWait();
     }
 }

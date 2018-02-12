@@ -1,6 +1,5 @@
 package br.uefs.ecomp.RoadTrips.controller;
 
-import br.uefs.ecomp.RoadTrips.model.Cidade;
 import br.uefs.ecomp.RoadTrips.model.Intersecao;
 import br.uefs.ecomp.RoadTrips.model.Ponto;
 import br.uefs.ecomp.RoadTrips.util.Vertex;
@@ -18,6 +17,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+/**
+ * Classe controla a tela de seleção de uma interseção, para edição de dados.
+ */
 public class FXMLAnchorPaneSelecionarIntersecaoController implements Initializable {
     @FXML
     private TableView<Intersecao> tableViewIntersecao;
@@ -37,20 +39,38 @@ public class FXMLAnchorPaneSelecionarIntersecaoController implements Initializab
     private Intersecao intersecao = null;
     
 
-    public void setControllerTela(FXMLTelaInicialController controllerTela) {
-        this.controllerTela = controllerTela;
-    }
-
+    /**
+     * Método setta o {@link br.uefs.ecomp.RoadTrips.controller.RoadTripsController 
+     * controller} principal da aplicação.
+     * @param controller Controller principal da aplicação.
+     */
     public void setController(RoadTripsController controller) {
         this.controller = controller;
     }
+
+    /**
+     * Método setta o {@link br.uefs.ecomp.RoadTrips.controller.FXMLTelaInicialController 
+     * controller da tela principal} da aplicação, que será usada para trocar a tela do sistema.
+     * @param controllerTela Controller da tela principal da aplicação.
+     */
+    public void setControllerTela(FXMLTelaInicialController controllerTela) {
+        this.controllerTela = controllerTela;
+    }
     
+    /**
+     * Método inicializa os dados do FXML.
+     * @param url Paramêtro padrão do JAVA.
+     * @param rb Paramêtro padrão do JAVA.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tableViewIntersecao.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> intersecao = newValue);
     } 
     
+    /**
+     * Método carrega a TableView com as interseções cadastradas no sistema.
+     */
     public void carregarTableViewIntersecao() {
         Iterator it = controller.iteratorPontos();
         LinkedList<Intersecao> intersecoes = new LinkedList<>();
@@ -77,6 +97,11 @@ public class FXMLAnchorPaneSelecionarIntersecaoController implements Initializab
         tableViewIntersecao.setItems(observableListIntersecao);
     }
         
+    /**
+     * Método disparado por um ActionEvent que cancela a seleção de interseção. 
+     * @param event Evento que disparou o método.
+     * @throws IOException Caso a tela de minhas viagens não consiga ser carregada.
+     */
     @FXML
     void editarIntersecaoSelecionada(ActionEvent event) throws IOException {
         if(intersecao != null){
@@ -84,6 +109,11 @@ public class FXMLAnchorPaneSelecionarIntersecaoController implements Initializab
         }
     }
 
+    /**
+     * Método disparado por um ActionEvent que carrega a edição da interseção selecionada. 
+     * @param event Evento que disparou o método.
+     * @throws IOException Caso a tela de adição de interseção não consiga ser carregada.
+     */
     @FXML
     void cancelarEdicaoIntersecao(ActionEvent event) throws IOException {
         controllerTela.carregarAnchorPaneMinhasViagens();

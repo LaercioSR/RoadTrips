@@ -40,8 +40,8 @@ public class FXMLTelaInicialController implements Initializable {
     
     /**
      * Método inicializa os dados do FXML.
-     * @param url 
-     * @param rb 
+     * @param url Paramêtro padrão do JAVA.
+     * @param rb Paramêtro padrão do JAVA.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -59,7 +59,7 @@ public class FXMLTelaInicialController implements Initializable {
     }
 
     /**
-     * Método setta o (@link br.uefs.ecomp.RoadTrips.controller.RoadTripsController 
+     * Método setta o {@link br.uefs.ecomp.RoadTrips.controller.RoadTripsController 
      * controller} principal da aplicação.
      * @param controller Controller principal da aplicação.
      */
@@ -90,7 +90,7 @@ public class FXMLTelaInicialController implements Initializable {
         }
         a = loader.load();
         FXMLAnchorPaneMenuController controllerMenu = loader.getController();
-        controllerMenu.setController(this);
+        controllerMenu.setControllerTela(this);
         anchorPaneMenu.getChildren().setAll(a);
         carregarAnchorPaneMinhasViagens();
     }
@@ -149,7 +149,7 @@ public class FXMLTelaInicialController implements Initializable {
         if(viagem != null){
             controllerViagem.carregarEdicao(viagem);
         } else{
-            controllerViagem.adicionarCidade(null);
+            controllerViagem.adicionarParada(null);
         }
         anchorPaneView.getChildren().setAll(a);
     }
@@ -166,7 +166,6 @@ public class FXMLTelaInicialController implements Initializable {
         loader.setLocation(getClass().getResource("/br/uefs/ecomp/RoadTrips/view/FXMLAnchorPaneViagem.fxml"));
         a = loader.load();
         FXMLAnchorPaneViagemController controllerViagem = loader.getController();
-        controllerViagem.setController(controller);
         controllerViagem.setControllerTela(this);
         controllerViagem.carregar(Viagem);
         anchorPaneView.getChildren().setAll(a);
@@ -204,7 +203,6 @@ public class FXMLTelaInicialController implements Initializable {
         loader.setLocation(getClass().getResource("/br/uefs/ecomp/RoadTrips/view/FXMLAnchorPaneLugaresComer.fxml"));
         a = loader.load();
         FXMLAnchorPaneLugaresComerController controllerLugaresComer = loader.getController();
-        controllerLugaresComer.setControllerTela(this);
         controllerLugaresComer.setCidade(cidade);
         controllerLugaresComer.carregar();
         anchorPaneView.getChildren().setAll(a);

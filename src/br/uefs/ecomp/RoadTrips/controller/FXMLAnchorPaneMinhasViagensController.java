@@ -17,6 +17,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
+/**
+ * Classe controla a tela de exibição de viagens de um usuário.
+ */
 public class FXMLAnchorPaneMinhasViagensController implements Initializable {    
     @FXML
     private ListView<AnchorPane> listViewViagens;
@@ -27,18 +30,37 @@ public class FXMLAnchorPaneMinhasViagensController implements Initializable {
     private LinkedList<FXMLAnchorPaneMiniaturaViagemController> controllerMiniaturas = new LinkedList();
     
 
+    /**
+     * Método setta o {@link br.uefs.ecomp.RoadTrips.controller.RoadTripsController 
+     * controller} principal da aplicação.
+     * @param controller Controller principal da aplicação.
+     */
     public void setController(RoadTripsController controller) {
         this.controller = controller;
     }
 
+    /**
+     * Método setta o {@link br.uefs.ecomp.RoadTrips.controller.FXMLTelaInicialController 
+     * controller da tela principal} da aplicação, que será usada para trocar a tela do sistema.
+     * @param controllerTela Controller da tela principal da aplicação.
+     */
     public void setControllerTela(FXMLTelaInicialController controllerTela) {
         this.controllerTela = controllerTela;
     }
 
+    /**
+     * Método define o usuário que terá suas viagens exibidas.
+     * @param usuario Usuário logado.
+     */
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
     
+    /**
+     * Método inicializa os dados do FXML.
+     * @param url Paramêtro padrão do JAVA.
+     * @param rb Paramêtro padrão do JAVA.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         listViewViagens.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -61,6 +83,9 @@ public class FXMLAnchorPaneMinhasViagensController implements Initializable {
         });
     }
     
+    /**
+     * Método carregar o ListView com as viagens do usuário.
+     */
     public void carregarListViewViagens() throws IOException {
         LinkedList<AnchorPane> miniaturas = new LinkedList<>();
         Iterator itViagens = usuario.iteratorViagem();

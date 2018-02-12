@@ -4,11 +4,8 @@ import br.uefs.ecomp.RoadTrips.controller.FXMLTelaCadastroUsuarioController;
 import br.uefs.ecomp.RoadTrips.controller.FXMLTelaInicialController;
 import br.uefs.ecomp.RoadTrips.controller.FXMLTelaLoginController;
 import br.uefs.ecomp.RoadTrips.controller.RoadTripsController;
-import br.uefs.ecomp.RoadTrips.exceptions.DadoDuplicadoException;
 import br.uefs.ecomp.RoadTrips.model.Usuario;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -35,15 +32,6 @@ public class RoadTripsMain extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         controller = new RoadTripsController();
-        
-        
-        try {
-            controller.cadastrarUsuario("Laercio", "", "laercio.rios13@hotmail.com");
-            controller.cadastrarUsuario("", "", "lesh.rios13@gmail.com");
-        } catch (DadoDuplicadoException ex) {
-            Logger.getLogger(RoadTripsMain.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
         
         stage = primaryStage;
         
