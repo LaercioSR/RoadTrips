@@ -5,8 +5,15 @@ import br.uefs.ecomp.RoadTrips.model.Estabelecimento;
 import br.uefs.ecomp.RoadTrips.model.Intersecao;
 import br.uefs.ecomp.RoadTrips.model.Usuario;
 import br.uefs.ecomp.RoadTrips.model.Viagem;
+import br.uefs.ecomp.RoadTrips.util.HashMap;
 import br.uefs.ecomp.RoadTrips.view.RoadTripsMain;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -14,6 +21,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -31,6 +39,14 @@ public class FXMLTelaInicialController implements Initializable {
     private MenuButton menuButtonUsuario;
     @FXML
     private ImageView imageViewLogo;
+    @FXML
+    private MenuItem menuItemSalvarSistema;
+    @FXML
+    private MenuItem menuItemCarregarRotas;
+    @FXML
+    private MenuItem menuItemCarregarCidades;
+    @FXML
+    private MenuItem menuItemCarregarSistema;
     
     private RoadTripsMain application;
     private RoadTripsController controller;
@@ -85,8 +101,16 @@ public class FXMLTelaInicialController implements Initializable {
         FXMLLoader loader = new FXMLLoader();
         if(usuario.isAdmin()){
             loader.setLocation(getClass().getResource("/br/uefs/ecomp/RoadTrips/view/FXMLAnchorPaneMenuAdmin.fxml"));
+            menuItemSalvarSistema.setVisible(true);
+            menuItemCarregarRotas.setVisible(true);
+            menuItemCarregarCidades.setVisible(true);
+            menuItemCarregarSistema.setVisible(true);
         } else {
             loader.setLocation(getClass().getResource("/br/uefs/ecomp/RoadTrips/view/FXMLAnchorPaneMenu.fxml"));
+            menuItemSalvarSistema.setVisible(false);
+            menuItemCarregarRotas.setVisible(false);
+            menuItemCarregarCidades.setVisible(false);
+            menuItemCarregarSistema.setVisible(false);
         }
         a = loader.load();
         FXMLAnchorPaneMenuController controllerMenu = loader.getController();
@@ -111,6 +135,59 @@ public class FXMLTelaInicialController implements Initializable {
     @FXML
     void deslogarUsuario(ActionEvent event) throws IOException {
         application.mostrarTelaLogin();
+    }    
+    
+    /**
+     * Método disparado por um ActionEvent que carrega o arquivo do sistema.
+     * @param event Evento que disparou o método.
+     * @throws FileNotFoundException Caso não exista um arquivo de salvamento.
+     * @throws IOException Caso o arquivo não consiga abrir corretamente.
+     * @throws ClassNotFoundException Caso uma das classes salvas não seja encontrada.
+     */
+    @FXML
+    void carregarSistema(ActionEvent event) throws FileNotFoundException, IOException, ClassNotFoundException {
+        try (FileInputStream arquivoLeitura = new FileInputStream("Saves/saveSystem.data"); 
+        ObjectInputStream objLeitura = new ObjectInputStream(arquivoLeitura)) {
+            HashMap usuarios = controller.getUsuarios();
+            controller = (RoadTripsController) objLeitura.readObject();
+            controller.setUsuarios(usuarios);
+        }
+    }
+
+    /**
+     * Método disparado por um ActionEvent que possibilita o usuário carregar um arquivo com cidades.
+     * @param event Evento que disparou o método.
+     * @throws FileNotFoundException Caso não exista um arquivo de salvamento.
+     * @throws IOException Caso o arquivo não consiga abrir corretamente.
+     */
+    @FXML
+    void carregarCidades(ActionEvent event) throws IOException, FileNotFoundException {
+        controller.lerArquivoCidades();
+    }
+
+    /**
+     * Método disparado por um ActionEvent que possibilita o usuário carregar um arquivo com rotas.
+     * @param event Evento que disparou o método.
+     * @throws FileNotFoundException Caso não exista um arquivo de salvamento.
+     * @throws IOException Caso o arquivo não consiga abrir corretamente.
+     */
+    @FXML
+    void carregarRotas(ActionEvent event) throws IOException, FileNotFoundException {
+        controller.lerArquivosRotas();
+    }
+
+    /**
+     * Método disparado por um ActionEvent que salva o arquivo do sistema.
+     * @param event Evento que disparou o método.
+     * @throws FileNotFoundException Caso não exista um arquivo de salvamento.
+     * @throws IOException Caso o arquivo não consiga abrir corretamente.
+     */
+    @FXML
+    void salvarSistema(ActionEvent event) throws FileNotFoundException, IOException {
+        FileOutputStream f = new FileOutputStream(new File("Saves","saveSystem.data"));
+        try (ObjectOutputStream objOutput = new ObjectOutputStream(f)) {
+            objOutput.writeObject(controller);
+        }
     }
     
     /**

@@ -2,25 +2,30 @@ package br.uefs.ecomp.RoadTrips.util;
 
 import br.uefs.ecomp.RoadTrips.exceptions.DadoDuplicadoException;
 import br.uefs.ecomp.RoadTrips.exceptions.DadoNaoEncontradoException;
+import java.io.Serializable;
 import java.util.Iterator;
+import java.util.PriorityQueue;
+import java.util.Stack;
 
 /**
  * Classe manipula e armazera dados com o comportamento de um grafo.
  */
-public class Grafo implements IGrafo {
+public class Grafo implements IGrafo, Serializable {
+
     private HashTable vertices;
-    
+
     /**
      * Controi um grafo.
      */
-    public Grafo(){
+    public Grafo() {
         vertices = new HashTable();
     }
-    
+
     /**
      * Método cria e adiciona um vértice ao grafo.
+     *
      * @param data Dado do vértice.
-     * @throws DadoDuplicadoException 
+     * @throws DadoDuplicadoException
      */
     @Override
     public void addVertex(Object data) throws DadoDuplicadoException {
@@ -30,6 +35,7 @@ public class Grafo implements IGrafo {
 
     /**
      * Método retorna o número de vértices.
+     *
      * @return Número de vertices.
      */
     @Override
@@ -38,7 +44,9 @@ public class Grafo implements IGrafo {
     }
 
     /**
-     * Método remove o vértice que possui o mesmo dado do object passado como paramêtro.
+     * Método remove o vértice que possui o mesmo dado do object passado como
+     * paramêtro.
+     *
      * @param o Dado do vértice a ser removido.
      * @throws DadoNaoEncontradoException Caso o vértice não seja encontrado.
      */
@@ -50,11 +58,14 @@ public class Grafo implements IGrafo {
 
     /**
      * Método cria e adiciona uma aresta ao grafo.
+     *
      * @param pontoA Ponto A da aresta.
      * @param pontoB Ponto B da aresta.
      * @param peso Peso da aresta.
-     * @throws DadoNaoEncontradoException Caso não seja encontrado um dos vértices com os pontos passados.
-     * @throws DadoDuplicadoException Caso já exista uma aresta com esses pontos.
+     * @throws DadoNaoEncontradoException Caso não seja encontrado um dos
+     * vértices com os pontos passados.
+     * @throws DadoDuplicadoException Caso já exista uma aresta com esses
+     * pontos.
      */
     @Override
     public void addEdge(Object pontoA, Object pontoB, double peso) throws DadoNaoEncontradoException, DadoDuplicadoException {
@@ -62,7 +73,7 @@ public class Grafo implements IGrafo {
         Vertex verticeA = (Vertex) vertices.get(verticeCmp);
         verticeCmp = new Vertex(pontoB);
         Vertex verticeB = (Vertex) vertices.get(verticeCmp);
-        
+
         Edge novo = new Edge(verticeA, verticeB, peso);
         verticeA.addEdge(verticeB, novo);
         verticeB.addEdge(verticeA, novo);
@@ -70,9 +81,11 @@ public class Grafo implements IGrafo {
 
     /**
      * Método remove a aresta que liga os pontos passados.
+     *
      * @param pontoA Ponto A da aresta a ser removida.
      * @param pontoB Ponto B da aresta a ser removida.
-     * @throws DadoNaoEncontradoException Caso não seja encontrado um dos vértices com os pontos passados.
+     * @throws DadoNaoEncontradoException Caso não seja encontrado um dos
+     * vértices com os pontos passados.
      */
     @Override
     public void removeEdge(Object pontoA, Object pontoB) throws DadoNaoEncontradoException {
@@ -80,24 +93,27 @@ public class Grafo implements IGrafo {
         Vertex verticeA = (Vertex) vertices.get(verticeCmp);
         verticeCmp = new Vertex(pontoB);
         Vertex verticeB = (Vertex) vertices.get(verticeCmp);
-        
+
         verticeA.removeEdge(verticeB);
         verticeB.removeEdge(verticeA);
     }
-    
+
     /**
      * Método retorna o vértice que possui o object a como dado.
+     *
      * @param a Dado do vértice.
      * @return Vértice desejado.
-     * @throws DadoNaoEncontradoException Caso não encontre um vértice com o object a como dado.
+     * @throws DadoNaoEncontradoException Caso não encontre um vértice com o
+     * object a como dado.
      */
     public Vertex getVertex(Object a) throws DadoNaoEncontradoException {
         Vertex novo = new Vertex(a);
         return (Vertex) vertices.get(novo);
     }
-    
+
     /**
      * Método retorna o iterador dos vértices do grafo.
+     *
      * @return Iterator dos vértices.
      */
     @Override

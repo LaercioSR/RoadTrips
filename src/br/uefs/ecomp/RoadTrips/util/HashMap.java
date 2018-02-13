@@ -2,21 +2,22 @@ package br.uefs.ecomp.RoadTrips.util;
 
 import br.uefs.ecomp.RoadTrips.exceptions.DadoDuplicadoException;
 import br.uefs.ecomp.RoadTrips.exceptions.DadoNaoEncontradoException;
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
  * Classe {@code HashMap} malipula e armazena dados no formato (chave, valor).
  */
-public class HashMap implements IHashMap {
-    private final double LOAD_FACTOR = 0.5;
-    private final Entry EMPTY = new Entry(new Object(), new Object());
+public class HashMap implements IHashMap, Serializable {
+    private final transient double LOAD_FACTOR = 0.5;
+    private final transient Entry EMPTY = new Entry(new Object(), new Object());
     
     private Entry[] entries;
     private int tamanhoArray;
     private int size = 0;
     
-    private class Entry{
+    private class Entry implements Serializable{
         private Object key;
         private Object value;
 

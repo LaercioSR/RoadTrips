@@ -1,11 +1,13 @@
 package br.uefs.ecomp.RoadTrips.model;
 
+import java.io.Serializable;
+
 /**
  * Classe abstrata implementa os comportamentos de um ponto no mapa.
  * @see Cidade
  * @see Intersecao
  */
-public abstract class Ponto {
+public abstract class Ponto implements Serializable {
     private int codigo;
     private String nome;
     private double latitude;
@@ -84,5 +86,14 @@ public abstract class Ponto {
         if(obj instanceof Ponto)
             return nome.equals(((Ponto) obj).getNome());
         return false;
+    }
+    
+    /**
+     * Método retorna o hashCode do ponto.
+     * @return HashCode do ponto.
+     */
+    @Override
+    public int hashCode() {
+        return nome.hashCode();
     }
 }

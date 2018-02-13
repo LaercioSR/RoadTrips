@@ -1,6 +1,8 @@
 package br.uefs.ecomp.RoadTrips.model;
 
+import java.io.Serializable;
 import java.util.LinkedList;
+import java.util.Objects;
 import javafx.scene.image.Image;
 
 /**
@@ -9,7 +11,7 @@ import javafx.scene.image.Image;
  * lugares onde são vendido comidas (Como restaurantes, bares e fast-foods).
  * @see TipoEstabelecimento
  */
-public class Estabelecimento {
+public class Estabelecimento implements Serializable {
     private String nome;
     private TipoEstabelecimento tipoEstabelecimento;
     private Cidade cidade;
@@ -83,5 +85,21 @@ public class Estabelecimento {
      */
     public void setNome(String nome) {
         this.nome = nome;
+    }
+    
+    /**
+     * Método retorna o hashCode do estabelecimento.
+     * @return HashCode do estabelecimento.
+     */
+    @Override
+    public int hashCode() {
+        return nome.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Estabelecimento)
+            return nome.equals(((Estabelecimento) obj).getNome());
+        return false;
     }
 }

@@ -15,14 +15,26 @@ import br.uefs.ecomp.RoadTrips.util.Grafo;
 import br.uefs.ecomp.RoadTrips.util.HashMap;
 import br.uefs.ecomp.RoadTrips.util.HashingSenha;
 import br.uefs.ecomp.RoadTrips.util.Vertex;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.StringTokenizer;
 import javafx.scene.image.Image;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 
-public class RoadTripsController {
-    Grafo pontos;
-    HashMap usuarios;
-    int numPontos;
+/**
+ * Classe controller principal do programa, que armazena e manipula os dados do Model.
+ */
+public class RoadTripsController implements Serializable {
+    private Grafo pontos;
+    private HashMap usuarios;
+    private int numPontos;
 
     /**
      * Constroi um controller do projeto.
@@ -31,6 +43,29 @@ public class RoadTripsController {
         this.pontos = new Grafo();
         this.usuarios = new HashMap();
         numPontos = 0;
+    }
+
+    /**
+     * Método retorna a lista de usuário cadastrados.
+     * @return Lista de usuário cadastrados.
+     */
+    public HashMap getUsuarios() {
+        return usuarios;
+    }
+
+    /**
+     * Método carrega os usuário de uma lista para o HashMap de usuários.
+     * @param listaUsuarios 
+     */
+    public void setUsuarios(HashMap listaUsuarios) {
+        Iterator it = listaUsuarios.iterator();
+        
+        while(it.hasNext()){
+            Usuario usuario = (Usuario) it.next();
+            try {
+                usuarios.put(usuario.getLogin(), usuario);
+            } catch (DadoDuplicadoException ex) { }
+        }
     }
     
     /**
@@ -101,6 +136,31 @@ public class RoadTripsController {
     }
     
     /**
+     * Método retorna verdadeiro se o ponto passada já está cadastrado (Pode ser usado 
+     * tanto para cidade como para interseção).
+     * @param ponto Nome para verificação.
+     * @return True se essa cidade já existe.
+     */
+    public boolean pontoCadastrado(Ponto ponto) {
+        try {
+            pontos.getVertex(ponto);
+        } catch (DadoNaoEncontradoException ex) {
+            return false;
+        }
+        return true;
+    }
+    
+    /**
+     * Método busca uma cidade pelo nome.
+     * @param nomeCidade Nome da cidade.
+     * @return Cidade Buscada.
+     * @throws DadoNaoEncontradoException Caso a cidade não seja encontrada.
+     */
+    public Cidade buscarCidade(String nomeCidade) throws DadoNaoEncontradoException {
+        return (Cidade) pontos.getVertex(new Cidade(nomeCidade)).getData();
+    }
+    
+    /**
      * Método cria e adiciona uma cidade ao sistema.
      * @param nome Nome da cidade.
      * @param area Area da cidade.
@@ -109,14 +169,78 @@ public class RoadTripsController {
      * @param latitude Latitude da cidade.
      * @param longitude Longitude da cidade.
      * @param imagens Lista com imagens da cidade.
+     * @return Cidade cadastrada.
      * @throws DadoDuplicadoException Caso já exista ponto com o nome passado.
      */
-    public void adicionarCidade(String nome, double area, int populacao, String descricao, double latitude, 
+    public Cidade adicionarCidade(String nome, double area, int populacao, String descricao, double latitude, 
                                 double longitude, LinkedList<Image> imagens) throws DadoDuplicadoException {
         
         Cidade cidade = new Cidade(nome, ++numPontos, area, populacao, descricao, latitude, longitude, imagens);
         
         pontos.addVertex(cidade);
+        
+        return cidade;
+    }
+    
+    /**
+     * Método possíbilita ao usuário abrir e carregar um arquivos com cidades.
+     * @throws FileNotFoundException Caso o arquivo não seja encontrado.
+     * @throws IOException Caso o arquivo não abra corretamente.
+     */
+    public void lerArquivoCidades() throws FileNotFoundException, IOException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Arquivo de Texto","*.txt"));
+        fileChooser.setTitle("Selecionar Arquivo das Cidades");
+        File file = fileChooser.showOpenDialog(null);
+        
+        BufferedReader buffRead = new BufferedReader(new FileReader(file));
+        
+        String linha = "";
+        while (true) {
+            linha = buffRead.readLine();
+            if (linha != null) {
+                StringTokenizer aux = new StringTokenizer(linha);
+                String nomeCidade = aux.nextToken();
+                double latitudeCidade = Double.parseDouble(aux.nextToken());
+                double longitudeCidade = Double.parseDouble(aux.nextToken());
+                Cidade cidade = new Cidade(nomeCidade, ++numPontos, latitudeCidade, longitudeCidade);
+                try {
+                    pontos.addVertex(cidade);
+                } catch (DadoDuplicadoException ex) { }
+            } else
+                break;
+        }
+        buffRead.close();
+    }
+    
+    /**
+     * Método possíbilita ao usuário abrir e carregar um arquivos com rotas.
+     * @throws FileNotFoundException Caso o arquivo não seja encontrado.
+     * @throws IOException Caso o arquivo não abra corretamente.
+     */
+    public void lerArquivosRotas() throws FileNotFoundException, IOException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Arquivo de Texto","*.txt"));
+        fileChooser.setTitle("Selecionar Arquivo das Rotas");
+        File file = fileChooser.showOpenDialog(null);
+        
+        BufferedReader buffRead = new BufferedReader(new FileReader(file));
+        
+        String linha = "";
+        while (true) {
+            linha = buffRead.readLine();
+            if (linha != null) {
+                StringTokenizer aux = new StringTokenizer(linha);
+                try {
+                    Cidade pontoA = buscarCidade(aux.nextToken());
+                    Cidade pontoB = buscarCidade(aux.nextToken());
+                    double distancia = Double.parseDouble(aux.nextToken());
+                    adicionarRota(pontoA, pontoB, distancia);
+                } catch (DadoNaoEncontradoException | DadoDuplicadoException ex) { }
+            } else
+                break;
+        }
+        buffRead.close();
     }
     
     /**
@@ -145,7 +269,7 @@ public class RoadTripsController {
      * @throws DadoDuplicadoException Caso já exista uma rota entre os dois pontos.
      */
     public void adicionarRota(Ponto pontoA, Ponto pontoB, double distancia) throws DadoNaoEncontradoException, DadoDuplicadoException{
-        pontos.addEdge(pontoA, pontoB, numPontos);
+        pontos.addEdge(pontoA, pontoB, distancia);
     }
     
     /**

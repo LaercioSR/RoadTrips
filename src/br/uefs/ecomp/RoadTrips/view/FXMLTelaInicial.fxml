@@ -19,6 +19,10 @@
                      <children>
                         <MenuButton fx:id="menuButtonUsuario" layoutX="815.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="160.0" styleClass="buttons" stylesheets="@css/styles.css">
                           <items>
+                              <MenuItem fx:id="menuItemCarregarSistema" mnemonicParsing="false" onAction="#carregarSistema" text="Carregar Sistema" visible="false" />
+                              <MenuItem fx:id="menuItemCarregarCidades" mnemonicParsing="false" onAction="#carregarCidades" text="Carregar Arquivo de Cidades" visible="false" />
+                              <MenuItem fx:id="menuItemCarregarRotas" mnemonicParsing="false" onAction="#carregarRotas" text="Carregar Arquivos de Rotas" visible="false" />
+                              <MenuItem fx:id="menuItemSalvarSistema" mnemonicParsing="false" onAction="#salvarSistema" text="Salvar Sistema" visible="false" />
                             <MenuItem mnemonicParsing="false" onAction="#deslogarUsuario" text="Sair" />
                           </items>
                         </MenuButton>

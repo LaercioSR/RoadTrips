@@ -1,5 +1,6 @@
 package br.uefs.ecomp.RoadTrips.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -9,7 +10,7 @@ import java.util.LinkedList;
  * todas as paradas e datas dessa viagem.
  * @see Parada
  */
-public class Viagem {
+public class Viagem implements Serializable {
     private String nome;
     private LinkedList<Parada> paradas;
 

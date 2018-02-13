@@ -2,15 +2,16 @@ package br.uefs.ecomp.RoadTrips.util;
 
 import br.uefs.ecomp.RoadTrips.exceptions.DadoDuplicadoException;
 import br.uefs.ecomp.RoadTrips.exceptions.DadoNaoEncontradoException;
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
  * Classe {@code HashTable} para armazenamento e manipulação de dados.
  */
-public class HashTable implements IHashTable {
-    private final double LOAD_FACTOR = 0.5;
-    private final Object EMPTY = new Object();
+public class HashTable implements IHashTable, Serializable {
+    private final transient double LOAD_FACTOR = 0.5;
+    private final transient Object EMPTY = new Object();
     
     Object[] datas;
     private int tamanhoArray;
@@ -118,7 +119,7 @@ public class HashTable implements IHashTable {
     
     // Método encontra uma posição para a entidade passada como paramêtro.
     private int encontrarPosicao(Object e){
-        int pos = e.hashCode() % tamanhoArray;
+        int pos = Math.abs(e.hashCode()) % tamanhoArray;
         int primeiroVazio = -1;
         
         while(datas[pos] != null && !datas[pos].equals(e)){

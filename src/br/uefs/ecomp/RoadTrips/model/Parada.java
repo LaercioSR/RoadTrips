@@ -1,5 +1,6 @@
 package br.uefs.ecomp.RoadTrips.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
@@ -7,7 +8,7 @@ import java.time.LocalDate;
  * datas de chegada e saída dessa parada.
  * @see Viagem
  */
-public class Parada {
+public class Parada implements Serializable {
     private Cidade cidade;
     private LocalDate dataChegada;
     private LocalDate dataPartida;

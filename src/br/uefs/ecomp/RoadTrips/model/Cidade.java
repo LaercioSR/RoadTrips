@@ -38,6 +38,25 @@ public class Cidade extends Ponto {
         this.imagens = imagens;
         lugaresComer = new HashTable();
     }
+    
+    /**
+     * Constroi uma cidade com os dados passados, usado para leitura de arquivos de texto.
+     * @param nome Nome da cidade.
+     * @param codigo Código da cidade.
+     * @param latitude Latitude da cidade.
+     * @param longitude Longitude da cidade.
+     */
+    public Cidade(String nome, int codigo, double latitude, double longitude){
+        super(codigo, nome, latitude, longitude);
+    }
+    
+    /**
+     * Constroi uma cidade com os dados passados, usado para buscar a cidade no HashTable.
+     * @param nome Nome da cidade.
+     */
+    public Cidade(String nome){
+        super(0, nome, 0.0, 0.0);
+    }
 
     /**
      * Método que retorna área da cidade.

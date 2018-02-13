@@ -1,5 +1,6 @@
 package br.uefs.ecomp.RoadTrips.model;
 
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -8,7 +9,7 @@ import java.util.LinkedList;
  * viagens na aplicação
  * @see TipoUsuario
  */
-public class Usuario {
+public class Usuario implements Serializable {
     private TipoUsuario tipoUsuario;
     private String login;
     private String senha;

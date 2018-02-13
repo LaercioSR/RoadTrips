@@ -2,12 +2,14 @@ package br.uefs.ecomp.RoadTrips.util;
 
 import br.uefs.ecomp.RoadTrips.exceptions.DadoDuplicadoException;
 import br.uefs.ecomp.RoadTrips.exceptions.DadoNaoEncontradoException;
+import java.io.Serializable;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 /**
  * Classe implementa o comportamento de um vértice de um grafo.
  */
-public class Vertex {
+public class Vertex implements Serializable {
 
     private Object data;
     private HashMap arestas;
@@ -36,7 +38,14 @@ public class Vertex {
      * @throws DadoDuplicadoException Caso já tenha uma aresta com esse vértice.
      */
     public void addEdge(Vertex v, Edge e) throws DadoDuplicadoException {
-        arestas.put(v, e);
+        LinkedList listaAresta;
+        try {
+            listaAresta = (LinkedList) arestas.get(v);
+        } catch (DadoNaoEncontradoException ex) {
+            listaAresta = new LinkedList();
+            arestas.put(v, listaAresta);
+        }
+        listaAresta.add(e);
     }
 
     /**
@@ -53,7 +62,17 @@ public class Vertex {
      * @return Iterator de arestas.
      */
     public Iterator iteratorEdge() {
-        return arestas.iterator();
+        LinkedList listArestas = new LinkedList();
+        Iterator it = arestas.iterator();
+        
+        while(it.hasNext()){
+            Iterator itArestas = ((LinkedList)it.next()).descendingIterator();
+            while(itArestas.hasNext()){
+                listArestas.add((Edge) itArestas.next());
+            }
+        }
+        
+        return listArestas.descendingIterator();
     }
 
     /**

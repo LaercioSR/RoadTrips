@@ -1,10 +1,12 @@
 package br.uefs.ecomp.RoadTrips.util;
 
+import java.io.Serializable;
+
 /**
  * Classe implementa o comportamento de uma aresta de um grafo, com dois vértices 
  * e um peso.
  */
-public class Edge {
+public class Edge implements Serializable {
     private final Vertex vertexA;
     private final Vertex vertexB;
     private final double peso;
